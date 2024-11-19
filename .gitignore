@@ -17,6 +17,7 @@ local.properties
 
 docker_sql/db_data/#innodb_temp/
 docker_sql/db_data/auto.cnf
-docker_sql/db_data/binlog.000011
 docker_sql/db_data/ibtmp1
 docker_sql/db_data/mysql.sock
+docker_sql/db_data/binlog.*
+docker_sql/db_data/ib_buffer_pool
