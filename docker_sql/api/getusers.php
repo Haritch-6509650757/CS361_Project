@@ -4,7 +4,7 @@ $username = "root";
 $password = "1234";
 $dbname = "users";
 
-$conn = mysqli_connect("db", "root", "1234", "users");
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if ($conn) {
     $sql = "SELECT * FROM users";

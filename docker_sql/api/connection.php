@@ -3,9 +3,9 @@
 $servername = "db";
 $username = "root";
 $password = "1234";
-$dbname = "users";
+$dbname = "cs361project";
 
-$conn = mysqli_connect("db", "root", "1234", "users");
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 if ($conn) {
     echo "connected";
