@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">cs361_project</string>
+
+
+    <string name="err_title">An error has occurred.</string>
+    <string name="noti_input_username">Please enter your username.</string>
+    <string name="noti_input_password">Please enter your password.</string>
+    <string name="noti_input_repassword">Please enter your re-password.</string>
+    <string name="noti_password_mismatch">Password and confirm password do not match.</string>
+    <string name="noti_select_role">No selection radio.</string>
+    <string name="noti_register_success">Registration completed.</string>
+    <string name="noti_register_save">The system has successfully saved the data.</string>
+    <string name="noti_close">CLOSE</string>
 </resources>

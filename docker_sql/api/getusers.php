@@ -1,10 +1,5 @@
 <?php
-$servername = "db";
-$username = "root";
-$password = "1234";
-$dbname = "users";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+include 'connection.php';
 
 if ($conn) {
     $sql = "SELECT * FROM users";
@@ -22,4 +17,7 @@ if ($conn) {
 } else {
     echo "Connection failed: " . mysqli_connect_error();
 }
+
+mysqli_close($conn);
+
 ?>

@@ -15,47 +15,50 @@
         android:orientation="vertical">
 
         <EditText
-            android:id="@+id/editTextText2"
+            android:id="@+id/username_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Name" />
+            android:hint="username"
+            android:inputType="text" />
 
         <EditText
-            android:id="@+id/editTextTextPassword"
+            android:id="@+id/password_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="password"
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/editTextTextPassword3"
+            android:id="@+id/repassword_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="re-password"
             android:inputType="textPassword" />
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <RadioButton
-                android:id="@+id/radioButton3"
+                android:id="@+id/radioSeller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Seller" />
 
             <RadioButton
-                android:id="@+id/radioButton4"
+                android:id="@+id/radioCustomer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Customer" />
         </RadioGroup>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register" />

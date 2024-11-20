@@ -25,9 +25,6 @@ import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
 
-    final String ipv4 = "localhostipv4";
-    final String url_getusers = "http://"+ipv4+":8080/api/getusers.php";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
     private void fetchUsers() {
         new Thread(() -> {
             try {
-                URL url = new URL(url_getusers);
+                URL url = new URL(Api.URL_GET_USERS);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setConnectTimeout(5000);
