@@ -22,9 +22,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cs361_project"
         tools:targetApi="31">
+
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="locale|fontScale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

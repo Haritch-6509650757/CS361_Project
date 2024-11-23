@@ -1,14 +1,24 @@
 <resources>
     <string name="app_name">cs361_project</string>
+    
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="repassword">Re-password</string>
+    <string name="customer">Customer</string>
+    <string name="seller">Seller</string>
+    <string name="register">Register</string>
+
 
 
     <string name="err_title">An error has occurred.</string>
     <string name="noti_input_username">Please enter your username.</string>
     <string name="noti_input_password">Please enter your password.</string>
+    <string name="noti_input_password6">Password must be longer than 6 characters.</string>
     <string name="noti_input_repassword">Please enter your re-password.</string>
     <string name="noti_password_mismatch">Password and confirm password do not match.</string>
     <string name="noti_select_role">No selection radio.</string>
     <string name="noti_register_success">Registration completed.</string>
     <string name="noti_register_save">The system has successfully saved the data.</string>
     <string name="noti_close">CLOSE</string>
+    <string name="noti_ok">OK</string>
 </resources>

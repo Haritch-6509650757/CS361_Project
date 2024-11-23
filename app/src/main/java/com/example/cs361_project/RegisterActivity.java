@@ -1,6 +1,8 @@
 package com.example.cs361_project;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -68,42 +70,51 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText repassword = findViewById(R.id.repassword_field);
         final RadioGroup radioGroup = findViewById(R.id.radioGroup);
 
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-        dialog.setTitle(R.string.err_title);
-        dialog.setPositiveButton(R.string.noti_close, null);
+        final AlertDialog.Builder dialogerr = new AlertDialog.Builder(this);
+        final AlertDialog.Builder dialogssucess = new AlertDialog.Builder(this);
+
+        dialogerr.setTitle(R.string.err_title);
+        dialogerr.setPositiveButton(R.string.noti_close, null);
 
         if(username.getText().length() == 0){
-            dialog.setMessage(R.string.noti_input_username);
-            dialog.show();
+            dialogerr.setMessage(R.string.noti_input_username);
+            dialogerr.show();
             username.requestFocus();
             return false;
         }
 
         if(password.getText().length() == 0){
-            dialog.setMessage(R.string.noti_input_password);
-            dialog.show();
+            dialogerr.setMessage(R.string.noti_input_password);
+            dialogerr.show();
             password.requestFocus();
             return false;
         }
 
         if(repassword.getText().length() == 0){
-            dialog.setMessage(R.string.noti_input_repassword);
-            dialog.show();
+            dialogerr.setMessage(R.string.noti_input_repassword);
+            dialogerr.show();
+            repassword.requestFocus();
+            return false;
+        }
+
+        if(password.getText().length() <= 6){
+            dialogerr.setMessage(R.string.noti_input_password6);
+            dialogerr.show();
             repassword.requestFocus();
             return false;
         }
 
         if (!password.getText().toString().equals(repassword.getText().toString())) {
-            dialog.setMessage(R.string.noti_password_mismatch);
-            dialog.show();
+            dialogerr.setMessage(R.string.noti_password_mismatch);
+            dialogerr.show();
             repassword.requestFocus();
             return false;
         }
 
         int selectedId = radioGroup.getCheckedRadioButtonId();
         if (selectedId == -1) {
-            dialog.setMessage(R.string.noti_select_role);
-            dialog.show();
+            dialogerr.setMessage(R.string.noti_select_role);
+            dialogerr.show();
             radioGroup.requestFocus();
             return false;
         }
@@ -117,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity {
                 try {
                     String strStatusID = "0";
                     String strError = "Unknown Status!";
+                    String strMessage = "";
                     JSONObject c;
                     JSONArray data = new JSONArray("["+response.toString()+"]");
 
@@ -127,19 +139,33 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.i("JSONOBJECT", c.toString());
                         strStatusID = c.getString("id");
                         strError = c.getString("status");
+                        strMessage = c.getString("message");
                     }
 
-                    if(strStatusID.equals("0")){
-                        dialog.setMessage(strError);
-                        dialog.show();
+                    if(strMessage.equals("Username already exists")){
+                        dialogerr.setMessage(strMessage);
+                        dialogerr.show();
+                    } else if(strStatusID.equals("0")){
+                        dialogerr.setMessage(strError);
+                        dialogerr.show();
+
                     } else {
-                        dialog.setTitle(R.string.noti_register_success);
-                        dialog.setMessage(R.string.noti_register_save);
-                        dialog.show();
+                        dialogssucess.setTitle(R.string.noti_register_success);
+                        dialogssucess.setMessage(R.string.noti_register_save);
                         username.setText("");
                         password.setText("");
                         repassword.setText("");
                         radioGroup.clearCheck();
+
+                        dialogssucess.setPositiveButton(R.string.noti_ok,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                    }
+                                });
+                        dialogssucess.show();
                     }
 
                 } catch (JSONException e){
