@@ -10,7 +10,7 @@ if ($conn) {
         while ($row = mysqli_fetch_assoc($result)) {
             $response[] = $row;
         }
-        echo json_encode($response, JSON_PRETTY_PRINT);
+        echo json_encode($response);
     } else {
         echo "Query error: " . mysqli_error($conn);
     }

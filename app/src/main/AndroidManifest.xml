@@ -39,6 +39,11 @@
             android:configChanges="locale|fontScale"
             android:exported="true"/>
 
+        <activity
+            android:name=".MockHomeActivity"
+            android:configChanges="locale|fontScale"
+            android:exported="true"/>
+
 
     </application>
 

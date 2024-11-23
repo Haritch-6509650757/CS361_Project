@@ -21,18 +21,19 @@
             android:text="LOGIN PLEASE SIGN IN TO CONTINUE" />
 
         <EditText
-            android:id="@+id/editTextText"
+            android:id="@+id/loginusername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:text="Name" />
+            android:hint="@string/username"
+            android:inputType="text" />
 
         <EditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/loginpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Button
