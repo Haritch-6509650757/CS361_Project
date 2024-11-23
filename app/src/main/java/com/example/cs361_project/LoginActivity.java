@@ -30,7 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    String username, apiKey;
+    String username, apiKey,job;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -99,14 +99,22 @@ public class LoginActivity extends AppCompatActivity {
                             if(status.equals("success")){
                                 username = c.getString("username");
                                 apiKey = c.getString("apiKey");
+                                job = c.getString("job");
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
                                 editor.putString("logged", "true");
                                 editor.putString("username", username);
                                 editor.putString("apiKey", apiKey);
                                 editor.apply();
-                                Intent intent = new Intent(LoginActivity.this, MockHomeActivity.class);
-                                startActivity(intent);
-                                finish();
+                                if(job.equals("แม่ค้า") || job.equals("Seller")){
+                                    Intent intent = new Intent(LoginActivity.this, MockHomeSellerActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    Intent intent = new Intent(LoginActivity.this, MockHomeCustomerActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
                             } else {
                                 Log.e("err", message);
                             }

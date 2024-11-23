@@ -40,7 +40,12 @@
             android:exported="true"/>
 
         <activity
-            android:name=".MockHomeActivity"
+            android:name=".MockHomeSellerActivity"
+            android:configChanges="locale|fontScale"
+            android:exported="true"/>
+
+        <activity
+            android:name=".MockHomeCustomerActivity"
             android:configChanges="locale|fontScale"
             android:exported="true"/>
 
