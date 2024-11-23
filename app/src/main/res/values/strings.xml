@@ -19,6 +19,7 @@
     <string name="noti_select_role">No selection radio.</string>
     <string name="noti_register_success">Registration completed.</string>
     <string name="noti_register_save">The system has successfully saved the data.</string>
+    <string name="noti_username_exists">Username already exists.</string>
     <string name="noti_close">CLOSE</string>
     <string name="noti_ok">OK</string>
 </resources>

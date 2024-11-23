@@ -16,6 +16,7 @@
     <string name="noti_select_role">ไม่ได้เลือกประเภทผู้ใช้</string>
     <string name="noti_register_success">สมัครบัญชีสำเร็จ</string>
     <string name="noti_register_save">ระบบได้ทำการบันทึกข้อมูลลงฐานข้อมูล</string>
+    <string name="noti_username_exists">บัญชีผู้ใช้นี้ซ้ำ</string>
     <string name="noti_close">ปิด</string>
     <string name="noti_ok">โอเค</string>
 </resources>

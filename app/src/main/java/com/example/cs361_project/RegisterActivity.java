@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
 
                     if(strMessage.equals("Username already exists")){
-                        dialogerr.setMessage(strMessage);
+                        dialogerr.setMessage(R.string.noti_username_exists);
                         dialogerr.show();
                     } else if(strStatusID.equals("0")){
                         dialogerr.setMessage(strError);
