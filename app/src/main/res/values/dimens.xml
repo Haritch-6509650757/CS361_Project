@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="size_menu">66dp</dimen>
+    <dimen name="icon_menu">0dp</dimen>
+    <dimen name="size_text">20dp</dimen>
+    <dimen name="channel">300dp</dimen>
+    <dimen name="cvv">130dp</dimen>
+    <dimen name="layout_edit">100dp</dimen>
+    <dimen name="layout_text_delete">225dp</dimen>
+
+</resources>

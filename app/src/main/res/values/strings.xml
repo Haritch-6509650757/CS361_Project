@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">cs361_project</string>
+    <string name="profile">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="id_user">ID : </string>
+    <string name="username">Username : </string>
+    <string name="name">Name : </string>
+    <string name="visa_card">Visa Card : </string>
+    <string name="cvv">CVV</string>
+    <string name="save">Save</string>
+    <string name="cancle">Cancle</string>
+    <string name="delete">Delete</string>
+    <string name="text_delete">to confirm this text DELETE</string>
 </resources>
