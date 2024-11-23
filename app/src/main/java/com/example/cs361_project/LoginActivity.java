@@ -92,10 +92,12 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         Log.i("DbVolley", response);
+                        int jsonStart = response.indexOf('{');
                         try {
-                            JSONObject c = new JSONObject(response);
+                            JSONObject c = new JSONObject(response.substring(jsonStart));
                             String status = c.getString("status");
                             String message = c.getString("message");
+                            Log.i("CheckerrJson", c.toString());
                             if(status.equals("success")){
                                 username = c.getString("username");
                                 apiKey = c.getString("apiKey");
@@ -115,8 +117,12 @@ public class LoginActivity extends AppCompatActivity {
                                     finish();
                                 }
 
+                            } else if(message.equals("Retry with correct username and password")){
+                                dialogerr.setMessage(R.string.retryconrectuserpass);
+                                dialogerr.show();
                             } else {
                                 Log.e("err", message);
+
                             }
 
                         } catch (JSONException e) {

@@ -7,6 +7,8 @@
     <string name="customer">ลูกค้า</string>
     <string name="seller">แม่ค้า</string>
     <string name="register">สมัครบัญชี</string>
+    <string name="retryconrectuserpass">ลองใหม่อีกครั้งด้วยชื่อผู้ใช้และรหัสผ่านที่ถูกต้อง</string>
+    <string name="donthaveaccount">ไม่มีบัญชี</string>
     <string name="err_title">เกิดข้อผิดพลาดขึ้น</string>
     <string name="noti_input_username">โปรดกรอกบัญชีผู้ใช้</string>
     <string name="noti_input_password">โปรดกรอกรหัสผ่าน</string>
@@ -19,4 +21,7 @@
     <string name="noti_username_exists">บัญชีผู้ใช้นี้ซ้ำ</string>
     <string name="noti_close">ปิด</string>
     <string name="noti_ok">โอเค</string>
+    <string name="signin">เข้าสู่ระบบ</string>
+    <string name="greatdeal">เพื่อที่จะได้รับข้อเสนอที่ดี</string>
+    <string name="login">ล็อกอิน</string>
 </resources>

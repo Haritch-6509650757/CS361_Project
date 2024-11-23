@@ -23,7 +23,7 @@ if($conn){
             if(mysqli_query($conn, $sqlUpdate)){
                  $result = array("status" => "success", "message" => "Login successful", "username" => $row["username"], "apiKey" => $row["apiKey"] , "job" => $row["job"]);
             } else $result = array("status" => "failed", "message" => "Login failed try again");
-        } else $result = array("status" => "failed", "message" => "Retry with correct email and password");
+        } else $result = array("status" => "failed", "message" => "Retry with correct username and password");
     }
     echo json_encode($result);
 }

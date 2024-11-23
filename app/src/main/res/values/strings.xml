@@ -7,6 +7,13 @@
     <string name="customer">Customer</string>
     <string name="seller">Seller</string>
     <string name="register">Register</string>
+    
+    <string name="retryconrectuserpass">Retry with correct username and password</string>
+
+    <string name="signin">Sign in</string>
+    <string name="greatdeal">to get a great deal!</string>
+    <string name="login">Login</string>
+    <string name="donthaveaccount">Dont have an account?</string>
 
 
 
