@@ -1,14 +1,16 @@
 package com.example.cs361_project;
 
-public class Product {
+public class Game {
     private String Pid;
     private String Pname;
-    private String Pprice;
-    private String Pamount;
+    private String Pimageurl;
+    private double Pprice;
+    private int Pamount;
 
-    public Product(String Pid, String Pname, String Pprice, String Pamount){
+    public Game(String Pid, String Pname, String Pimageurl, double Pprice, int Pamount){
         this.Pid = Pid;
         this.Pname = Pname;
+        this.Pimageurl = Pimageurl;
         this.Pprice = Pprice;
         this.Pamount = Pamount;
     }
@@ -16,13 +18,35 @@ public class Product {
     public String getPid() {
         return Pid;
     }
+    public void setPid(String Pid) {
+        this.Pid = Pid;
+    }
+
     public String getPname() {
         return Pname;
     }
-    public String getPprice() {
+    public void setPname(String Pname){
+        this.Pname = Pname;
+    }
+
+    public String getPimageurl(){
+        return Pimageurl;
+    }
+    public void setPimageurl(String Pimageurl){
+        this.Pimageurl = Pimageurl;
+    }
+
+    public double getPprice() {
         return Pprice;
     }
-    public String getPamount() {
+    public void setPprice(double Pprice){
+        this.Pprice = Pprice;
+    }
+
+    public int getPamount() {
         return Pamount;
+    }
+    public void setPamount(int Pamount){
+        this.Pamount = Pamount;
     }
 }
