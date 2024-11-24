@@ -3,12 +3,14 @@
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/edit_profile"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    tools:context=".EditProfileActivity" >
 
     <LinearLayout android:id="@+id/layout_menu"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_menu"
         android:orientation="horizontal"
@@ -73,40 +75,78 @@
             android:paddingBottom="50dp"
             app:srcCompat="@drawable/profile_image" />
 
-        <TextView
-            android:id="@+id/name"
+<!--        <TextView-->
+<!--            android:id="@+id/name"-->
+<!--            android:layout_width="@dimen/channel"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/textview_border"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="@string/name"-->
+<!--            android:gravity="left"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Large" />-->
+
+        <EditText
+            android:id="@+id/edit_name"
             android:layout_width="@dimen/channel"
             android:layout_height="wrap_content"
             android:background="@drawable/textview_border"
             android:padding="10dp"
-            android:text="@string/name"
+            android:hint="@string/name"
+            android:inputType="textPersonName"
             android:gravity="left"
             android:layout_gravity="center_horizontal"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/_card"
+<!--        <TextView-->
+<!--            android:id="@+id/visa_card"-->
+<!--            android:layout_width="@dimen/channel"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/textview_border"-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:text="@string/visa_card"-->
+<!--            android:gravity="left"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>-->
+
+        <EditText
+            android:id="@+id/edit_visa"
             android:layout_width="@dimen/channel"
             android:layout_height="wrap_content"
             android:background="@drawable/textview_border"
             android:padding="10dp"
             android:layout_marginTop="20dp"
-            android:text="@string/visa_card"
             android:gravity="left"
             android:layout_gravity="center_horizontal"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:hint="@string/visa_card"
+            android:inputType="number"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-        <TextView
-            android:id="@+id/cvv"
+<!--        <TextView-->
+<!--            android:id="@+id/cvv"-->
+<!--            android:layout_width="@dimen/cvv"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/textview_border"-->
+<!--            android:padding="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginLeft="55dp"-->
+<!--            android:text="@string/cvv"-->
+<!--            android:gravity="center"-->
+<!--            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>-->
+
+        <EditText
+            android:id="@+id/edit_cvv"
             android:layout_width="@dimen/cvv"
             android:layout_height="wrap_content"
             android:background="@drawable/textview_border"
             android:padding="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="55dp"
-            android:text="@string/cvv"
+            android:hint="@string/cvv"
+            android:inputType="numberPassword"
             android:gravity="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <LinearLayout android:id="@+id/layout_edit"
             android:layout_width="match_parent"

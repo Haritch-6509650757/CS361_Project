@@ -3,9 +3,11 @@
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/profile"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    tools:context=".ProfileActivity" >
 
     <LinearLayout android:id="@+id/layout_menu"
         android:layout_width="match_parent"
@@ -48,7 +50,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="15dp">
             <ImageView
-                android:id="@+id/tab_menu"
+                android:id="@+id/menu"
                 android:layout_width="@dimen/icon_menu"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

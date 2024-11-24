@@ -6,5 +6,5 @@ public class Api {
     public static final String URL_REGISTER = "http://" + IPV4 + ":8080/api/register.php";
     public static final String URL_LOGIN = "http://" + IPV4 + ":8080/api/login.php";
     public static final String URL_PROFILE = "http://" + IPV4 + ":8080/api/profile.php";
-    public static final String URL_EDIT_PROFILE = "http://" + IPV4 + ":8080/api/edit_profile.php";
+    public static final String URL_EDIT_PROFILE = "http://" + IPV4 + ":8080/api/editprofile.php";
 }
