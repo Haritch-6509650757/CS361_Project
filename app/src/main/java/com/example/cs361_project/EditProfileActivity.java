@@ -25,13 +25,14 @@ import java.util.Map;
 public class EditProfileActivity extends AppCompatActivity {
 
     private EditText editName, editVisaCard, editCvv;
-    private Button buttonSave;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+        final Button buttonSave = findViewById(R.id.button_save);
         // ตั้งค่า OnClickListener สำหรับปุ่ม Save
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +40,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     saveProfile();
                 }
         });
-    }
+    } //endOnCreate
 
     // ฟังก์ชันสำหรับบันทึกข้อมูลในฐานข้อมูล
     private void saveProfile() {
@@ -47,7 +48,7 @@ public class EditProfileActivity extends AppCompatActivity {
         editName = findViewById(R.id.edit_name);
         editVisaCard = findViewById(R.id.edit_visa);
         editCvv = findViewById(R.id.edit_cvv);
-        buttonSave = findViewById(R.id.button_save);
+
 
         String username = editName.getText().toString();
         String visa = editVisaCard.getText().toString();
