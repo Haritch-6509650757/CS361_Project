@@ -5,4 +5,5 @@ public class Api {
     public static final String URL_GET_USERS = "http://" + IPV4 + ":8080/api/getusers.php";
     public static final String URL_REGISTER = "http://" + IPV4 + ":8080/api/register.php";
     public static final String URL_LOGIN = "http://" + IPV4 + ":8080/api/login.php";
+    public static final String URL_ADDITEM = "http://" + IPV4 + ":8080/api/additem.php";
 }

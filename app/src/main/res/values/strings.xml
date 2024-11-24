@@ -15,6 +15,11 @@
     <string name="login">Login</string>
     <string name="donthaveaccount">Dont have an account?</string>
 
+    <string name="additem">Add Item</string>
+    <string name="item">Item : </string>
+    <string name="price">Price : </string>
+    <string name="amount">Amount : </string>
+    <string name="submit">Submit</string>
 
 
     <string name="err_title">An error has occurred.</string>
