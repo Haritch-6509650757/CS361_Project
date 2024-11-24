@@ -1,9 +1,15 @@
 package com.example.cs361_project;
 
+import android.app.DownloadManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.util.Base64; // ใข้แปลงรูป
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,8 +20,23 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+//import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvGames; // แสดงรายการเกม
@@ -27,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.home); //กำหนดหน้า layout home
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -47,13 +67,106 @@ public class MainActivity extends AppCompatActivity {
 
     // method สำหรับโหลดข้อมูลเกม
     private void loadGameData() {
-        gameList = new ArrayList<>();
+        RequestQueue queue = Volley.newRequestQueue(this);
 
-        gameList.add(new Game("1", "test game","",20,20));
-        gameList.add(new Game("2", "Elden ring", "", 30, 100));
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, Api.URL_GET_PRODUCTS, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    // ลบ comment และ character พิเศษออก
+                    String cleanResponse = response;
+                    if (response.contains("/*")) {
+                        cleanResponse = response.substring(response.indexOf("["), response.lastIndexOf("]") + 1);
+                    }
 
-        gameAdapter = new GameAdapter(this, gameList);
-        rvGames.setAdapter(gameAdapter);
+                    // Log response
+                    Log.d("API_DEBUG", "Original response: " + response);
+                    Log.d("API_DEBUG", "Cleaned response: " + cleanResponse);
+
+                    JSONArray jsonArray = new JSONArray(cleanResponse);
+                    Log.d("API_DEBUG", "Successfully parsed JSON Array with " + jsonArray.length() + " items");
+
+                    gameList = new ArrayList<>();
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject gameObject = jsonArray.getJSONObject(i);
+
+                        // Log ข้อมูลของแต่ละเกม
+                        Log.d("API_DEBUG", "Processing game " + (i + 1));
+
+                        String id = gameObject.optString("Pid", "");
+                        String name = gameObject.optString("Pname", "");
+
+                        // แปลง String เป็น double และ int
+                        double price = Double.parseDouble(gameObject.optString("Pprice", "0"));
+                        int amount = Integer.parseInt(gameObject.optString("Pamount", "0"));
+
+                        // จัดการกับรูปภาพ
+                        Bitmap imageBitmap;
+                        String imageBase64 = gameObject.optString("Pimage", "");
+
+                        if (!imageBase64.isEmpty()) {
+                            try {
+                                // ลบ whitespace หรือ newline ที่อาจมีใน Base64 string
+                                imageBase64 = imageBase64.trim().replaceAll("\\s+", "");
+                                                                  //รูปที่ต้องการแปลง decode แบบ default
+                                byte[] imageBytes = Base64.decode(imageBase64, Base64.DEFAULT);
+                                              // แปลงข้อมูลรููปแบบ byte เพื่อให้สามารถนำไปใช้ใน layout ได้ เริ่มตำแหน้ง 0 และขนาดที่ต้องการ decode
+                                imageBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
+
+                                if (imageBitmap == null) {
+                                    Log.e("API_DEBUG", "Failed to decode bitmap for game: " + name);
+                                    imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.loading_error);
+                                }
+                            } catch (Exception e) {
+                                Log.e("API_DEBUG", "Error processing image for game " + name + ": " + e.getMessage());
+                                imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.loading_error);
+                            }
+                        } else {
+                            Log.d("API_DEBUG", "No image data for game: " + name);
+                            imageBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.loading_error);
+                        }
+
+                        // สร้าง Game object และเพิ่มเข้า list
+                        Game game = new Game(id, name, imageBitmap, price, amount);
+                        gameList.add(game);
+                        Log.d("API_DEBUG", "Successfully added game: " + name);
+                    }
+
+                    if (!gameList.isEmpty()) {
+                        gameAdapter = new GameAdapter(MainActivity.this, gameList);
+                        rvGames.setAdapter(gameAdapter);
+                        Log.d("API_DEBUG", "Successfully set adapter with " + gameList.size() + " games");
+                    } else {
+                        Toast.makeText(MainActivity.this, "No games found", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (Exception e) {
+                    Log.e("API_DEBUG", "Error parsing data: " + e.getMessage());
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "Error loading data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("API_DEBUG", "Network Error: " + error.toString());
+                if (error.networkResponse != null) {
+                    String errorMessage = new String(error.networkResponse.data);
+                    Log.e("API_DEBUG", "Error Data: " + errorMessage);
+                }
+                Toast.makeText(MainActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // เพิ่ม timeout และ retry policy
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                15000, // 15 seconds timeout
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+
+        queue.add(stringRequest);
     }
 
     // ตั้งค่า recycle viewer
