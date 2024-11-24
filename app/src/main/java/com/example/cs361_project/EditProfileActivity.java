@@ -24,30 +24,27 @@ import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    private EditText editName, editVisaCard, editCvv;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
+
         final Button buttonSave = findViewById(R.id.button_save);
-        // ตั้งค่า OnClickListener สำหรับปุ่ม Save
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
-                public void onClick(View v) {
-                    saveProfile();
-                }
+            public void onClick(View v) {
+                saveProfile();
+            }
         });
     } //endOnCreate
 
     // ฟังก์ชันสำหรับบันทึกข้อมูลในฐานข้อมูล
     private void saveProfile() {
         // กำหนดตัวแปรกับ EditText และ Button
-        editName = findViewById(R.id.edit_name);
-        editVisaCard = findViewById(R.id.edit_visa);
-        editCvv = findViewById(R.id.edit_cvv);
+        EditText editName = findViewById(R.id.edit_name);
+        EditText editVisaCard = findViewById(R.id.edit_visa);
+        EditText editCvv = findViewById(R.id.edit_cvv);
 
 
         String username = editName.getText().toString();
@@ -59,10 +56,10 @@ public class EditProfileActivity extends AppCompatActivity {
         Log.d("EditProfile", "CVV: " + cvv);
 
         // ตรวจสอบว่าไม่มีช่องว่าง
-        if (username.isEmpty() || visa.isEmpty() || cvv.isEmpty()) {
+        /*if (username.isEmpty() || visa.isEmpty() || cvv.isEmpty()) {
             Toast.makeText(EditProfileActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
 
         // สร้างคำขอ POST
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_EDIT_PROFILE,

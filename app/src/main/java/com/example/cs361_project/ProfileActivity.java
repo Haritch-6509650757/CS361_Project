@@ -2,10 +2,12 @@ package com.example.cs361_project;
 
 import static com.example.cs361_project.Api.URL_PROFILE;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -95,30 +97,16 @@ public class ProfileActivity extends AppCompatActivity {
         queue.add(stringRequest);
 
         Button editProfileButton = findViewById(R.id.button_edit_profile);
-        editProfileButton.setOnClickListener(v -> {
-            if (!isEditProfile) {
-                setContentView(R.layout.activity_edit_profile);
-                isEditProfile = true;
 
-                ImageView backButton = findViewById(R.id.button_back);
-                backButton.setOnClickListener(back -> {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
-                    builder.setTitle("Confirm back");
-                    builder.setMessage("Do you want to return to the previous page?");
-
-                    builder.setPositiveButton("Yes", (dialog, which) -> {
-                        setContentView(R.layout.activity_profile);
-                        isEditProfile = false;
-                        recreate();
-                    });
-                    builder.setNegativeButton("No", (dialog, which) -> {
-                        dialog.dismiss();
-                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                });
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
+
     }
 }
