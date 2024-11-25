@@ -59,13 +59,4 @@ public class Game {
         this.Pamount = Pamount;
     }
 
-// public Bitmap getImageBitmap(){
-//        try{
-//            byte[] imageBytes = Base64.decode(Pimageurl, Base64.DEFAULT);
-//            return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-//        }catch (Exception e){
-//            e.printStackTrace();
-//            return null;
-//        }
-//    }
 }
