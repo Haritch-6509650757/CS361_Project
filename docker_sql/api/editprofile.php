@@ -1,26 +1,44 @@
 <?php
     include 'connection.php';
 
-    if (isset($_POST['username'], $_POST['visa'], $_POST['cvv'])) {
-        // รับข้อมูลจากคำขอ POST
+
+
+    if (!empty($_POST['username']) && !empty($_POST['visa']) && !empty($_POST['cvv']) && !empty($_POST['profile_image']) && !empty($_POST['id'])) {
         $username = $_POST['username'];
         $visa = $_POST['visa'];
         $cvv = $_POST['cvv'];
-//         $apikey = bin2hex(random_bytes(23));
+        $profile_image = $_POST['profile_image'];
+        $id = $_POST['id']; // ใช้ ID ในการอัปเดต record
 
-//         $sqlUpdate = "UPDATE users SET apiKey = '$apiKey' WHERE 1";
-        // คำสั่ง SQL สำหรับอัปเดตข้อมูล
-        $sql = "UPDATE users SET username='$username', visa='$visa', cvv='$cvv' WHERE apikey = 'f6aa83e29adffcb2d84a4aa6661e40e1a7eda139d9ec5f'
-";
+        // แปลง Base64 เป็นไฟล์ภาพ
+        $imageName = uniqid() . '.jpg'; // ตั้งชื่อไฟล์
+        $imagePath = 'uploads/' . $imageName;
 
-        // ส่งคำสั่ง SQL ไปที่ฐานข้อมูล
-        if ($conn->query($sql) === TRUE) {
-            echo "Profile updated successfully";
+        if (!file_exists('uploads')) {
+            mkdir('uploads', 0777, true);
+        }
+
+        $decodedImage = base64_decode($profile_image);
+        file_put_contents($imagePath, $decodedImage);
+
+        // SQL Query
+        $sql = "UPDATE users SET username=?, visa=?, cvv=?, profile_image=? WHERE id=?";
+        $stmt = $conn->prepare($sql);
+
+        if ($stmt) {
+            $stmt->bind_param('ssssi', $username, $visa, $cvv, $imageName, $id);
+
+            if ($stmt->execute()) {
+                echo json_encode(['success' => true, 'message' => 'Profile updated successfully', 'image_name' => $imageName]);
+            } else {
+                echo json_encode(['success' => false, 'message' => 'Failed to update profile']);
+            }
+
+            $stmt->close();
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo json_encode(['status' => 'error', 'message' => 'Failed to prepare statement']);
         }
     } else {
-        // ถ้าไม่พบพารามิเตอร์ที่จำเป็น
         echo json_encode(["success" => false, "message" => "Missing required parameters."]);
     }
 ?>

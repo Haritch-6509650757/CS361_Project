@@ -25,13 +25,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class ProfileActivity extends AppCompatActivity {
-    private boolean isEditProfile = false;
+import java.time.Instant;
 
+public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,6 @@ public class ProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
 
         // เข้าถึง TextView ที่แสดงข้อมูล
         TextView textViewUserId = findViewById(R.id.id_user);
@@ -98,7 +98,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         Button editProfileButton = findViewById(R.id.button_edit_profile);
 
-
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,6 +106,23 @@ public class ProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        //ImageView profileImageView = findViewById(R.id.profile_image);
+
+        // รับชื่อรูปภาพจาก Intent
+        //String imageName = getIntent().getStringExtra("profile_image_name");
+
+        //if (imageName != null && !imageName.isEmpty()) {
+            // สร้าง URL สำหรับรูปภาพ
+            //String imageUrl = "http://your-server.com/uploads/" + imageName;
+
+            // ใช้ Glide โหลดรูปภาพ
+            //Glide.with(this)
+                    //.load(imageUrl)
+                    //.placeholder(R.drawable.placeholder_image) // รูปภาพที่จะแสดงระหว่างโหลด
+                    //.error(R.drawable.error_image) // รูปภาพเมื่อเกิดข้อผิดพลาด
+                    //.into(profileImageView);
+        //}
 
     }
 }

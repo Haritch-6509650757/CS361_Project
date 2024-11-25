@@ -11,4 +11,5 @@
     <string name="cancle">Cancle</string>
     <string name="delete">Delete</string>
     <string name="text_delete">to confirm this text DELETE</string>
+    <string name="upload_image">Upload image</string>
 </resources>

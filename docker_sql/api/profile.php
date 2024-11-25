@@ -1,6 +1,5 @@
 <?php
     include 'connection.php';
-    // Query ข้อมูลจากตาราง users
     $query = "SELECT id, username FROM users";
     $result = $conn->query($query);
 

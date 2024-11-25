@@ -11,16 +11,16 @@
 
     <LinearLayout android:id="@+id/layout_menu"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/size_menu"
+        android:layout_height="@dimen/size_height_menu"
         android:orientation="horizontal"
         android:background="@color/dark_bule">
 
         <LinearLayout
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="@dimen/button_back"
+            android:layout_height="@dimen/button_back"
             android:orientation="horizontal"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:id="@+id/button_back"
@@ -41,17 +41,17 @@
             android:paddingTop="25dp"
             android:textSize="@dimen/size_text"
             android:text="@string/profile"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            tools:ignore="InefficientWeight,SpUsage" />
 
         <LinearLayout
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/menu"
+            android:layout_height="@dimen/menu"
             android:orientation="horizontal"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="15dp">
+            android:layout_marginRight="5dp">
             <ImageView
-                android:id="@+id/menu"
-                android:layout_width="@dimen/icon_menu"
+                android:id="@+id/tab_menu"
+                android:layout_width="@dimen/menu"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
@@ -68,10 +68,11 @@
 
         <ImageView
             android:id="@+id/profile_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="50dp"
-            android:paddingBottom="50dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="center"
             app:srcCompat="@drawable/profile_image" />
 
         <TextView
