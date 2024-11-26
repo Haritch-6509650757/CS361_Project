@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="navbar">#1F143D</color>
+    <color name="background">#34284A</color>
+    <color name="orange">#FB8926</color>
 </resources>
