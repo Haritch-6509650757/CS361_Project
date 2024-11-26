@@ -1,7 +1,9 @@
 package com.example.cs361_project;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,6 +34,17 @@ public class MockHomeCustomerActivity extends AppCompatActivity {
 
         usernamemock.setText(sharedPreferences.getString("username", "Guest"));
         apimock.setText(sharedPreferences.getString("apiKey", "eiei"));
+
+
+        final TextView gotoadditem = findViewById(R.id.gotoadditem);
+        gotoadditem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MockHomeCustomerActivity.this, AddItemActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     } //end OnCreate

@@ -36,6 +36,7 @@
     <string name="noti_additem_success">เพิ่มสินค้าเรียบร้อย</string>
     <string name="noti_exit_page">คุณต้องการออกจากหน้านี้หรือไม่</string>
     <string name="noti_title_exit">ยืนยันการออก</string>
+    <string name="noti_title_logout">คุณต้องการออกจากระบบหรือไม่</string>
     <string name="profile">โปรไฟล์</string>
     <string name="logout">ออกจากระบบ</string>
 </resources>

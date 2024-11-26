@@ -57,6 +57,12 @@ public class AddItemActivity extends AppCompatActivity {
         });
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(AddItemActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         ImageView image_item = findViewById(R.id.imgitem);
         Button summit_btn = findViewById(R.id.submit_btn);
         ImageView arrowback_btn = findViewById(R.id.arrowback);
@@ -141,7 +147,7 @@ public class AddItemActivity extends AppCompatActivity {
                             Toast.makeText(AddItemActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
                             return true;
                         } else if (id == R.id.menu_logout){
-                            Toast.makeText(AddItemActivity.this, "Logout Selected", Toast.LENGTH_SHORT).show();
+                            LogoutUtils.logout(AddItemActivity.this, sharedPreferences);
                             return true;
                         }
                         return false;
@@ -150,9 +156,6 @@ public class AddItemActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
-
-
-
     } //end OnCreate
 
     public void additem(){
@@ -197,9 +200,6 @@ public class AddItemActivity extends AppCompatActivity {
                 return;
             }
 
-
-
-
             RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, Api.URL_ADDITEM,
@@ -219,10 +219,6 @@ public class AddItemActivity extends AppCompatActivity {
                                             }
                                         });
                                 dialogssucess.show();
-
-
-
-
 
                             } else {
                                 Toast.makeText(getApplicationContext(), "Failed to upload", Toast.LENGTH_SHORT).show();

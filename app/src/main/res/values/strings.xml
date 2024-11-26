@@ -41,6 +41,8 @@
     <string name="noti_additem_success">Add item success.</string>
     <string name="noti_exit_page">Do you want to exit this page.</string>
     <string name="noti_title_exit">Confirm to exit.</string>
+    <string name="noti_title_logout">Do you want to logout</string>
+
 
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
