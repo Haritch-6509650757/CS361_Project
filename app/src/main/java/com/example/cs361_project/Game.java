@@ -23,18 +23,12 @@ public class Game {
         this.Pcategory = Pcategory;
     }
 
-    public String getPid() {
-
-        return Pid;
-    }
+    public String getPid() { return Pid; }
     public void setPid(String Pid) {
         this.Pid = Pid;
     }
 
-    public String getPname() {
-
-        return Pname;
-    }
+    public String getPname() { return Pname; }
     public void setPname(String Pname){
         this.Pname = Pname;
     }
@@ -46,10 +40,7 @@ public class Game {
         this.Pimage = Pimage;
     }
 
-    public double getPprice() {
-
-        return Pprice;
-    }
+    public double getPprice() { return Pprice; }
     public void setPprice(double Pprice){
         this.Pprice = Pprice;
     }
