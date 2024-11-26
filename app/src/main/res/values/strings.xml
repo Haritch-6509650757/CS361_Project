@@ -34,4 +34,14 @@
     <string name="noti_username_exists">Username already exists.</string>
     <string name="noti_close">CLOSE</string>
     <string name="noti_ok">OK</string>
+    <string name="noti_input_item">Please enter your item.</string>
+    <string name="noti_input_price">Please enter your price.</string>
+    <string name="noti_input_amount">Please enter your amount.</string>
+    <string name="noti_img_item">Plase upload your picture item.</string>
+    <string name="noti_additem_success">Add item success.</string>
+    <string name="noti_exit_page">Do you want to exit this page.</string>
+    <string name="noti_title_exit">Confirm to exit.</string>
+
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginStart="10dp"
             app:srcCompat="@drawable/arrow_back" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Additem"
+            android:text="@string/additem"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/white" />
 
@@ -37,26 +38,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
             app:srcCompat="@drawable/menu" />
     </LinearLayout>
 
-    <ImageButton
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgitem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        app:srcCompat="@drawable/ic_launcher_foreground" />
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/cloudupload"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:shapeAppearanceOverlay="@style/CircularImageView" />
 
-    <Button
+    <!--GOTO-->
+    <!--<Button
         android:id="@+id/addpic_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
 
         android:layout_marginBottom="20sp"
-        android:text="AddPicture"
+        android:text="GotoPicTest"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        app:iconGravity="end" />
+        app:iconGravity="end" />-->
+    <!--GOTO-->
 
     <EditText
         android:id="@+id/item_input"
@@ -67,9 +76,9 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_orange_border"
         android:ems="10"
-        android:hint="Item :"
+        android:hint="@string/item"
         android:inputType="text"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/price_input"
@@ -80,9 +89,9 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_orange_border"
         android:ems="10"
-        android:hint="Price : "
+        android:hint="@string/price"
         android:inputType="number"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/amount_input"
@@ -93,9 +102,9 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_orange_border"
         android:ems="10"
-        android:hint="Amount : "
+        android:hint="@string/amount"
         android:inputType="number"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <Button
         android:id="@+id/submit_btn"
@@ -104,6 +113,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:text="Submit" />
+        android:text="@string/submit" />
 
 </LinearLayout>

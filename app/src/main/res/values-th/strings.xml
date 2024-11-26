@@ -29,4 +29,13 @@
     <string name="additem">เพิ่มสินค้า</string>
     <string name="item">"สินค้า : "</string>
     <string name="price">ราคา :</string>
+    <string name="noti_input_item">โปรดกรอกสินค้า</string>
+    <string name="noti_input_price">โปรดกรอกราคาสินค้า</string>
+    <string name="noti_input_amount">โปรดกรอกจำนวนสินค้า</string>
+    <string name="noti_img_item">โปรดอัปโหลดรูปภาพสินค้า</string>
+    <string name="noti_additem_success">เพิ่มสินค้าเรียบร้อย</string>
+    <string name="noti_exit_page">คุณต้องการออกจากหน้านี้หรือไม่</string>
+    <string name="noti_title_exit">ยืนยันการออก</string>
+    <string name="profile">โปรไฟล์</string>
+    <string name="logout">ออกจากระบบ</string>
 </resources>
