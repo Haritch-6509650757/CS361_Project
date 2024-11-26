@@ -12,13 +12,15 @@ public class Game {
     private Bitmap Pimage;
     private double Pprice;
     private int Pamount;
+    private String Pcategory;
 
-    public Game(String Pid, String Pname, Bitmap Pimage, double Pprice, int Pamount){
+    public Game(String Pid, String Pname, Bitmap Pimage, double Pprice, int Pamount, String Pcategory){
         this.Pid = Pid;
         this.Pname = Pname;
         this.Pimage = Pimage;
         this.Pprice = Pprice;
         this.Pamount = Pamount;
+        this.Pcategory = Pcategory;
     }
 
     public String getPid() {
@@ -58,5 +60,8 @@ public class Game {
     public void setPamount(int Pamount){
         this.Pamount = Pamount;
     }
+
+    public void setPcategory(String Pcategory) { this.Pcategory = Pcategory; }
+    public String getPcategory() { return Pcategory; }
 
 }

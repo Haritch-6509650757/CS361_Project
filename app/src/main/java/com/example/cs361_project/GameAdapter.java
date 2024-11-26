@@ -83,4 +83,10 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
     public int getItemCount(){
         return games.size();
     }
+
+    // Filter เกมตาม Category
+    public void updateGameList(List<Game> newGames){
+        this.games = newGames;
+        notifyDataSetChanged();
+    }
 }

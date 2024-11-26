@@ -1,12 +1,12 @@
 package com.example.cs361_project;
 
-import android.app.DownloadManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Base64; // ใข้แปลงรูป
@@ -25,20 +25,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 //import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
     private RecyclerView rvGames; // แสดงรายการเกม
     private GameAdapter gameAdapter; // จีดการข้อมูลใน Recycler Viewer
     private List<Game> gameList; // แสดงรายการเกมทั้งหมด
@@ -63,6 +61,55 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.e("MainActivity", "Error initializing: " + e.getMessage());
         }
+
+        final TextView PC = findViewById(R.id.pc);
+        PC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterGamesByCategory("PC");
+            }
+        });
+
+        final TextView PSN = findViewById(R.id.psn);
+        PSN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterGamesByCategory("PSN");
+            }
+        });
+
+        final TextView NINTEDNO = findViewById(R.id.nintendo);
+        NINTEDNO.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterGamesByCategory("NINTENDO");
+            }
+        });
+
+        final TextView XBOX = findViewById(R.id.xbox);
+        XBOX.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterGamesByCategory("XBOX");
+            }
+        });
+
+        final TextView MERCHANT = findViewById(R.id.merchant);
+        MERCHANT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterGamesByCategory("MERCHANT");
+            }
+        });
+
+        //setContentView(R.layout.home);
+        final ImageView HOME = findViewById(R.id.home);
+        HOME.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loadGameData();
+            }
+        });
     }
 
     // method สำหรับโหลดข้อมูลเกม
@@ -96,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
                         String id = gameObject.optString("Pid", "");
                         String name = gameObject.optString("Pname", "");
+                        String category = gameObject.optString("Pcategory", "");
 
                         // แปลง String เป็น double และ int
                         double price = Double.parseDouble(gameObject.optString("Pprice", "0"));
@@ -128,23 +176,23 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         // สร้าง Game object และเพิ่มเข้า list
-                        Game game = new Game(id, name, imageBitmap, price, amount);
+                        Game game = new Game(id, name, imageBitmap, price, amount, category);
                         gameList.add(game);
                         Log.d("API_DEBUG", "Successfully added game: " + name);
                     }
 
                     if (!gameList.isEmpty()) {
-                        gameAdapter = new GameAdapter(MainActivity.this, gameList);
+                        gameAdapter = new GameAdapter(GameActivity.this, gameList);
                         rvGames.setAdapter(gameAdapter);
                         Log.d("API_DEBUG", "Successfully set adapter with " + gameList.size() + " games");
                     } else {
-                        Toast.makeText(MainActivity.this, "No games found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(GameActivity.this, "No games found", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (Exception e) {
                     Log.e("API_DEBUG", "Error parsing data: " + e.getMessage());
                     e.printStackTrace();
-                    Toast.makeText(MainActivity.this, "Error loading data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GameActivity.this, "Error loading data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -155,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                     String errorMessage = new String(error.networkResponse.data);
                     Log.e("API_DEBUG", "Error Data: " + errorMessage);
                 }
-                Toast.makeText(MainActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GameActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -233,4 +281,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void filterGamesByCategory(String category){
+        List<Game> filteredGames = new ArrayList<>();
+        for(Game game : gameList){
+            if(game.getPcategory().equalsIgnoreCase(category)){
+                filteredGames.add(game);
+            }
+        }
+        gameAdapter.updateGameList(filteredGames);
+    }
+
 }
