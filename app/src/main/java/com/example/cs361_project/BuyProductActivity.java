@@ -1,7 +1,6 @@
 package com.example.cs361_project;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -22,13 +21,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class BuyActivity extends AppCompatActivity {
+public class BuyProductActivity extends AppCompatActivity {
     String Pname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +75,7 @@ public class BuyActivity extends AppCompatActivity {
         BACKBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(BuyActivity.this)
+                new AlertDialog.Builder(BuyProductActivity.this)
                         .setTitle(R.string.noti_merchant_exit)
                         .setMessage(R.string.noti_merchant_exit_page)
                         .setPositiveButton(R.string.noti_merchant_ok, new DialogInterface.OnClickListener() {

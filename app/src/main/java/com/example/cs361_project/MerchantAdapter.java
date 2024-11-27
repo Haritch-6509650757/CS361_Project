@@ -1,5 +1,6 @@
 package com.example.cs361_project;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.google.android.material.button.MaterialButton;
 import org.w3c.dom.Text;
 
 //import java.util.Base64;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MerchantViewHolder> {
@@ -75,11 +77,17 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
                 .into(holder.Mcover);
         Log.d("MerchantAdapter", "Image Path: " + merchant1.getMimage());
 
-
         holder.Mbtnbuynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Buying " + merchant1.getMitem(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, BuyMerchantActivity.class);
+
+                intent.putExtra("merchant_item", merchant1.getMitem());
+                intent.putExtra("merchant_price", price);
+                intent.putExtra("merchant_amount", amount);
+                intent.putExtra("merchant_cover", cover);
+
+                context.startActivity(intent);
             }
         });
     }

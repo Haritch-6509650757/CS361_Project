@@ -1,24 +1,20 @@
 package com.example.cs361_project;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.util.Base64;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 
-import org.w3c.dom.Text;
-
 //import java.util.Base64;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
@@ -73,7 +69,20 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
         holder.btnbuynow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Buying " + game.getPname(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, BuyProductActivity.class);
+
+                intent.putExtra("game_name", game.getPname());
+                intent.putExtra("game_price", price);
+                intent.putExtra("game_amount", amount);
+
+                Bitmap bitmap = game.getPimage();
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+                byte[] byteArray = byteArrayOutputStream.toByteArray();
+
+                intent.putExtra("game_cover", byteArray);
+
+                context.startActivity(intent);
             }
         });
     }

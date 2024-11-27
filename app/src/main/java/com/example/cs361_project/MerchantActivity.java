@@ -1,5 +1,6 @@
 package com.example.cs361_project;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -64,8 +66,24 @@ public class MerchantActivity extends AppCompatActivity {
         final ImageView BACKBTN = findViewById(R.id.back_btn);
         BACKBTN.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();
+            public void onClick(View v) {
+                new AlertDialog.Builder(MerchantActivity.this)
+                        .setTitle(R.string.noti_merchant_exit)
+                        .setMessage(R.string.noti_merchant_exit_page)
+                        .setPositiveButton(R.string.noti_merchant_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton(R.string.noti_merchant_close, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
             }
         });
     }
