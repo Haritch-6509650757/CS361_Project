@@ -1,11 +1,15 @@
 package com.example.cs361_project;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -28,6 +32,8 @@ import java.util.Locale;
 import java.util.Map;
 
 public class BuyProductActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
+
     String Pname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +45,7 @@ public class BuyProductActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
         Pname = getIntent().getStringExtra("game_name");
         double Pprice = getIntent().getDoubleExtra("game_price", 0.0);
@@ -102,8 +109,34 @@ public class BuyProductActivity extends AppCompatActivity {
                         .show();
             }
         });
-    }
 
+        ImageView menu_btn = findViewById(R.id.menu_btn_buy);
+        menu_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(BuyProductActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        if (id == R.id.menu_profile){
+                            Intent intent = new Intent(BuyProductActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            return true;
+                        } else if (id == R.id.menu_logout){
+                            LogoutUtils.logout(BuyProductActivity.this, sharedPreferences);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
+
+    }
     private void BuyProduct() {
         RequestQueue queue = Volley.newRequestQueue(this);
 

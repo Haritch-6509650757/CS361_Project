@@ -2,14 +2,17 @@ package com.example.cs361_project;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MerchantActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
     private RecyclerView rvMerchant; // แสดงรายการเกม
     private MerchantAdapter merchantAdapter; // จีดการข้อมูลใน Recycler Viewer
     private List<Merchant> merchantList; // แสดงรายการเกมทั้งหมด
@@ -53,7 +57,7 @@ public class MerchantActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         try {
             initializeViews();
             setupRecycleView();
@@ -86,6 +90,32 @@ public class MerchantActivity extends AppCompatActivity {
                         .show();
             }
         });
+        ImageView menu_btn = findViewById(R.id.menu_btn);
+        menu_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(MerchantActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        if (id == R.id.menu_profile){
+                            Intent intent = new Intent(MerchantActivity.this, ProfileActivity.class);
+                            startActivity(intent);
+                            return true;
+                        } else if (id == R.id.menu_logout){
+                            LogoutUtils.logout(MerchantActivity.this, sharedPreferences);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
+
     }
 
     // method สำหรับโหลดข้อมูลเกม
@@ -208,6 +238,8 @@ public class MerchantActivity extends AppCompatActivity {
             this.spacing = spacing;
             this.includeEdge = includeEdge;
         }
+
+
 
         // คำนวณระยะห่างแต่ละ item
         public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state){

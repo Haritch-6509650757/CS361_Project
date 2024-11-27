@@ -1,6 +1,6 @@
 <?php
 include 'connection.php';
-//ALTER TABLE users AUTO_INCREMENT = <next_id>;
+//ALTER TABLE users AUTO_INCREMENT = <next_id>; // TRUNCATE TABLE ชื่อตาราง; ลบข้อมูลในตารางทั้งหมด
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];

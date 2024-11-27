@@ -43,6 +43,7 @@
     <string name="logout">ออกจากระบบ</string>
     <string name="edit_profile">แก้ไขโปรไฟล์</string>
     <string name="gmail">อีเมล : </string>
+    <string name="email">"อีเมล : "</string>
     <string name="phone">โทรศัพท์ : </string>
     <string name="visa_card">"บัตรวีซ่า : "</string>
     <string name="cvv">CVV</string>
@@ -73,8 +74,6 @@
     <string name="select_image">เลือกรูปภาพก่อน</string>
     <string name="invalid_email">รูปแบบอีเมลไม่ถูกต้อง</string>
     <string name="invalid_phone_format">หมายเลขโทรศัพท์ต้องเป็น 10 หลัก</string>
-
-    <string name="app_name">cs361_project</string>
     <string name="currency">฿THB</string>
     <string name="language">ไทย</string>
     <string name="nintendo">นินเทนโด้</string>
@@ -88,4 +87,6 @@
     <string name="xbox">เอกซ์บอกซ์</string>
     <string name="buy_success">ซื้อสำเร็จ</string>
     <string name="buy_error">เกิดข้อผิดพลาด</string>
+    <string name="buynow">ซื้อเลย</string>
+    <string name="profilethis">อยู่หน้าโปรไฟล์แล้ว</string>
 </resources>

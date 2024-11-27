@@ -144,7 +144,8 @@ public class AddItemActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         int id = item.getItemId();
                         if (id == R.id.menu_profile){
-                            Toast.makeText(AddItemActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(AddItemActivity.this, ProfileActivity.class);
+                            startActivity(intent);
                             return true;
                         } else if (id == R.id.menu_logout){
                             LogoutUtils.logout(AddItemActivity.this, sharedPreferences);

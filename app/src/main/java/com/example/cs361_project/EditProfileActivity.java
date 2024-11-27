@@ -93,7 +93,6 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
                         startActivity(intent);
-                        finish();
                     }
                 });
 

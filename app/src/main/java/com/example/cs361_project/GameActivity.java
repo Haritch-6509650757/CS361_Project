@@ -1,6 +1,7 @@
 package com.example.cs361_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
     private RecyclerView rvGames; // แสดงรายการเกม
     private GameAdapter gameAdapter; // จีดการข้อมูลใน Recycler Viewer
     private List<Game> gameList; // แสดงรายการเกมทั้งหมด
@@ -52,7 +54,12 @@ public class GameActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(GameActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
         // เช็คถ้าเกิด error
         try {
             initializeViews();
@@ -99,8 +106,14 @@ public class GameActivity extends AppCompatActivity {
         MERCHANT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(GameActivity.this, MerchantActivity.class);
-                startActivity(intent);
+
+                if(sharedPreferences.getString("job","").equals("แม่ค้า") || sharedPreferences.getString("job","").equals("Seller")){
+                    Intent intent = new Intent(GameActivity.this, MerchantSellerActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(GameActivity.this, MerchantActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

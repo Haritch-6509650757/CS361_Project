@@ -106,13 +106,14 @@ public class LoginActivity extends AppCompatActivity {
                                 editor.putString("logged", "true");
                                 editor.putString("username", username);
                                 editor.putString("apiKey", apiKey);
+                                editor.putString("job", job);
                                 editor.apply();
                                 if(job.equals("แม่ค้า") || job.equals("Seller")){
-                                    Intent intent = new Intent(LoginActivity.this, MockHomeSellerActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, GameActivity.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MockHomeCustomerActivity.class);
+                                    Intent intent = new Intent(LoginActivity.this, GameActivity.class);
                                     startActivity(intent);
                                     finish();
                                 }

@@ -115,7 +115,6 @@ public class ProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ProfileActivity.this, EditProfileActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -130,8 +129,6 @@ public class ProfileActivity extends AppCompatActivity {
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ProfileActivity.this, MockHomeCustomerActivity.class);
-                        startActivity(intent);
                         finish();
                     }
                 });
@@ -158,7 +155,7 @@ public class ProfileActivity extends AppCompatActivity {
                     public boolean onMenuItemClick(MenuItem item) {
                         int id = item.getItemId();
                         if (id == R.id.menu_profile){
-                            Toast.makeText(ProfileActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileActivity.this, R.string.profilethis, Toast.LENGTH_SHORT).show();
                             return true;
                         } else if (id == R.id.menu_logout){
                             LogoutUtils.logout(ProfileActivity.this, sharedPreferences);

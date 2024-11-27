@@ -91,4 +91,7 @@
     <string name="noti_merchant_close">CANCEL</string>
     <string name="buy_success">Buy success</string>
     <string name="buy_error">Error</string>
+    <string name="gmail">"Gmail : "</string>
+    <string name="buynow">Buy Now</string>
+    <string name="profilethis">Profile Selected</string>
 </resources>

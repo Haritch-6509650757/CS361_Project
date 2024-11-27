@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:background="@color/purplebtn"
     tools:context=".EditProfileActivity" >
 
     <LinearLayout android:id="@+id/nav"
@@ -31,8 +32,8 @@
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/edit_profile"
-            android:textColor="@color/white"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/white" />
 
 
         <ImageView
