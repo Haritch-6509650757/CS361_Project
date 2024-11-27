@@ -42,11 +42,12 @@
     <string name="profile">โปรไฟล์</string>
     <string name="logout">ออกจากระบบ</string>
     <string name="edit_profile">แก้ไขโปรไฟล์</string>
-    <string name="name">"ชื่อ : "</string>
+    <string name="gmail">อีเมล : </string>
+    <string name="phone">โทรศัพท์ : </string>
     <string name="visa_card">"บัตรวีซ่า : "</string>
     <string name="cvv">CVV</string>
     <string name="save">บันทึก</string>
-    <string name="cancle">ยกเลิก</string>
+    <string name="cancel">ยกเลิก</string>
     <string name="delete">ลบ</string>
     <string name="text_delete">เขียน ลบ เพื่อยืนยัน</string>
     <string name="upload_image">อัปโหลดรูป</string>

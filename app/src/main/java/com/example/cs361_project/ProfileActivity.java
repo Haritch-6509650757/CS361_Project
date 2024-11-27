@@ -2,15 +2,16 @@ package com.example.cs361_project;
 
 import static com.example.cs361_project.Api.URL_PROFILE;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,7 +30,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,15 +43,13 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.profile);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.profile), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-
-
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -63,6 +61,8 @@ public class ProfileActivity extends AppCompatActivity {
                             ImageView profileImageView = findViewById(R.id.profile_image);
                             TextView textViewUserId = findViewById(R.id.id_user);
                             TextView textViewUsername = findViewById(R.id.username_user);
+                            TextView textViewEmail = findViewById(R.id.email_user);
+                            TextView textViewPhone = findViewById(R.id.phone_user);
 
                             JSONObject c = new JSONObject(response);
                             String status = c.getString("status");
@@ -70,14 +70,21 @@ public class ProfileActivity extends AppCompatActivity {
                             String id = c.getString("id");
                             String username = c.getString("username");
                             String profile_image = c.getString("profile_image");
-
+                            String email = c.getString("email");
+                            String phone = c.getString("phone");
 
                             String pic_profile = "http://" + Api.IPV4 + ":8080/api/images/" + profile_image;
 
-                            if(status.equals("success")){
+                            if (status.equals("success")) {
                                 textViewUserId.setText(id);
                                 textViewUsername.setText(username);
-                                Glide.with(ProfileActivity.this).load(pic_profile).into(profileImageView);
+                                textViewEmail.setText(email);
+                                textViewPhone.setText(phone);
+
+                                Glide.with(ProfileActivity.this)
+                                        .load(pic_profile)
+                                        .placeholder(R.drawable.profile_image)
+                                        .into(profileImageView);
 
                             } else {
                                 Log.e("err", message);
@@ -100,7 +107,8 @@ public class ProfileActivity extends AppCompatActivity {
         };
         queue.add(stringRequest);
 
-        Button editProfileButton = findViewById(R.id.button_edit_profile);
+
+        Button editProfileButton = findViewById(R.id.btn_edit_profile);
 
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,37 +119,56 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
+        ImageView buttonBack = findViewById(R.id.button_back);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
+                builder.setTitle(R.string.confirm);
+                builder.setMessage(R.string.sure);
 
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ProfileActivity.this, MockHomeCustomerActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
 
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
 
-
-
-
-
-
-
-
-
-
-
-
-
-        //
-
-        // รับชื่อรูปภาพจาก Intent
-        //String imageName = getIntent().getStringExtra("profile_image_name");
-
-        //if (imageName != null && !imageName.isEmpty()) {
-            // สร้าง URL สำหรับรูปภาพ
-            //String imageUrl = "http://your-server.com/uploads/" + imageName;
-
-            // ใช้ Glide โหลดรูปภาพ
-            //Glide.with(this)
-                    //.load(imageUrl)
-                    //.placeholder(R.drawable.placeholder_image) // รูปภาพที่จะแสดงระหว่างโหลด
-                    //.error(R.drawable.error_image) // รูปภาพเมื่อเกิดข้อผิดพลาด
-                    //.into(profileImageView);
-        //}
-
+        ImageView menu_btn = findViewById(R.id.menu);
+        menu_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(ProfileActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        if (id == R.id.menu_profile){
+                            Toast.makeText(ProfileActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
+                            return true;
+                        } else if (id == R.id.menu_logout){
+                            LogoutUtils.logout(ProfileActivity.this, sharedPreferences);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 }

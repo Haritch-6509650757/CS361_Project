@@ -4,6 +4,7 @@ import static com.example.cs361_project.Api.URL_DELETE;
 import static com.example.cs361_project.Api.URL_EDIT_PROFILE;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,10 +13,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -43,35 +47,25 @@ import java.util.Map;
 
 
 public class EditProfileActivity extends AppCompatActivity {
+
     SharedPreferences sharedPreferences;
-
-
-    private static final int PICK_IMAGE_REQUEST = 1;  // Code for opening gallery
     private ImageView profileImageView;
-    //private Button uploadImage;
-    //private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+        setContentView(R.layout.edit_profile);
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-
 
         final Button buttonSave = findViewById(R.id.button_save);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 saveProfile();
-                // หลังจากบันทึกสำเร็จ ส่งชื่อรูปภาพไปยัง ProfileActivity
-                //Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                //intent.putExtra("profile_image", "6744540d71d94.jpg"); // ส่งชื่อไฟล์รูปภาพที่อัปโหลด
-                //startActivity(intent);
-                //finish();
             }
         });
 
-        Button buttonDelete = findViewById(R.id.button_delete);
+        Button buttonDelete = findViewById(R.id.btn_delete);
         EditText editTextConfirm = findViewById(R.id.edit_text);
 
         buttonDelete.setOnClickListener(new View.OnClickListener() {
@@ -81,22 +75,20 @@ public class EditProfileActivity extends AppCompatActivity {
                 if ("DELETE".equals(confirmationText)) {
                     confirmDeleteAccount();
                 } else {
-                    Toast.makeText(EditProfileActivity.this, "Please type 'DELETE' to confirm", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfileActivity.this, R.string.confirm_delete1, Toast.LENGTH_SHORT).show();
                 }
             }
         });
 
         ImageView buttonBack = findViewById(R.id.button_back);
-
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // สร้าง AlertDialog เพื่อถามผู้ใช้ก่อนย้อนกลับ
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
-                builder.setTitle("Confirm Back");
-                builder.setMessage("Are you sure you want to go back to the profile page?");
+                builder.setTitle(R.string.confirm);
+                builder.setMessage(R.string.sure);
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
@@ -105,7 +97,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -120,12 +112,11 @@ public class EditProfileActivity extends AppCompatActivity {
         buttonCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // สร้าง AlertDialog เพื่อถามผู้ใช้ก่อนย้อนกลับ
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditProfileActivity.this);
-                builder.setTitle("Confirm cancle");
-                builder.setMessage("Are you sure you want to go back to the profile page?");
+                builder.setTitle(R.string.confirm_cancel);
+                builder.setMessage(R.string.sure);
 
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
@@ -134,7 +125,7 @@ public class EditProfileActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -146,27 +137,71 @@ public class EditProfileActivity extends AppCompatActivity {
         });
 
         profileImageView = findViewById(R.id.profile_image);
-        // เมื่อกดที่ ImageView จะเปิด Gallery เพื่อเลือกภาพ
         profileImageView.setOnClickListener(v -> openGallery());
+
+        ImageView menu_btn = findViewById(R.id.menu);
+        menu_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu = new PopupMenu(EditProfileActivity.this, v);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_popup, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        int id = item.getItemId();
+                        if (id == R.id.menu_profile){
+                            Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
+                            Toast.makeText(EditProfileActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                            finish();
+                            return true;
+                        } else if (id == R.id.menu_logout){
+                            LogoutUtils.logout(EditProfileActivity.this, sharedPreferences);
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
 
     } //endOnCreate
 
-    // ฟังก์ชันสำหรับบันทึกข้อมูลในฐานข้อมูล
     private void saveProfile() {
         EditText editName = findViewById(R.id.edit_name);
         EditText editVisaCard = findViewById(R.id.edit_visa);
         EditText editCvv = findViewById(R.id.edit_cvv);
+        EditText editEmail = findViewById(R.id.edit_email);
+        EditText editPhone = findViewById(R.id.edit_phone);
 
         String username = editName.getText().toString();
         String visa = editVisaCard.getText().toString();
         String cvv = editCvv.getText().toString();
+        String email = editEmail.getText().toString();
+        String phone = editPhone.getText().toString();
 
-        if (username.isEmpty() || visa.isEmpty() || cvv.isEmpty()) {
-            Toast.makeText(EditProfileActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+        if (username.isEmpty() || visa.isEmpty() || cvv.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+            Toast.makeText(EditProfileActivity.this, R.string.file_all_fields, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (visa.length() < 10 && visa.length() > 10) {
+            Toast.makeText(EditProfileActivity.this, R.string.file_visa, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (cvv.length() < 3 && cvv.length() > 3) {
+            Toast.makeText(EditProfileActivity.this, R.string.file_cvv, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            Toast.makeText(EditProfileActivity.this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!phone.matches("\\d{10}")) {
+            Toast.makeText(EditProfileActivity.this, R.string.invalid_phone_format, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // แปลงรูปภาพเป็น Base64
         profileImageView.setDrawingCacheEnabled(true);
         profileImageView.buildDrawingCache();
         Bitmap bitmap = profileImageView.getDrawingCache();
@@ -177,24 +212,20 @@ public class EditProfileActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            // แปลง Response เป็น JSON Object
                             JSONObject jsonResponse = new JSONObject(response);
 
                             if (jsonResponse.getBoolean("success")) {
-                                // รับชื่อไฟล์รูปภาพจาก Response
                                 String imageName = jsonResponse.optString("image_name", "");
 
-                                // สร้าง AlertDialog แสดงความสำเร็จ
                                 new AlertDialog.Builder(EditProfileActivity.this)
-                                        .setTitle("Success")
-                                        .setMessage("Profile updated successfully")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        .setTitle(R.string.success)
+                                        .setMessage(R.string.profile_success)
+                                        .setPositiveButton(R.string.noti_ok, new DialogInterface.OnClickListener() {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.dismiss();
 
-                                                // ส่งข้อมูลไปยังหน้า ProfileActivity
                                                 Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                                                intent.putExtra("profile_image", imageName); // ส่งชื่อไฟล์รูปภาพ
+                                                intent.putExtra("profile_image", imageName);
                                                 startActivity(intent);
                                                 finish();
                                             }
@@ -202,42 +233,38 @@ public class EditProfileActivity extends AppCompatActivity {
                                         .setCancelable(false)
                                         .show();
                             } else {
-                                // แสดงข้อความผิดพลาดจาก Response
                                 Toast.makeText(EditProfileActivity.this, jsonResponse.getString("message"), Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
+                            Toast.makeText(EditProfileActivity.this, R.string.error_response, Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
-                            Toast.makeText(EditProfileActivity.this, "Error parsing response", Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(EditProfileActivity.this, "Failed to update profile", Toast.LENGTH_LONG).show();
+                        Toast.makeText(EditProfileActivity.this, R.string.profile_failed, Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("apiKey", sharedPreferences.getString("apiKey",""));
-                params.put("username", username); // ชื่อผู้ใช้
-                params.put("visa", visa); // หมายเลข Visa
-                params.put("cvv", cvv); // CVV
-                params.put("profile_image", encodedImage); // รูปภาพในรูปแบบ Base64
+                params.put("username", username);
+                params.put("visa", visa);
+                params.put("cvv", cvv);
+                params.put("profile_image", encodedImage);
+                params.put("email", email);
+                params.put("phone", phone);
                 return params;
             }
         };
 
-
-        // สร้าง RequestQueue
         RequestQueue queue = Volley.newRequestQueue(this);
-
-        // เพิ่มคำขอไปยัง Queue
         queue.add(stringRequest);
 
         ImageView backtoProfile = findViewById(R.id.button_back);
-
         backtoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -249,63 +276,52 @@ public class EditProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void confirmDeleteAccount() {
-        new AlertDialog.Builder(EditProfileActivity.this)
-                .setTitle("Confirm Deletion")
-                .setMessage("Are you sure you want to delete this account? This action cannot be undone.")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        deleteAccount();
-                    }
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
-
     private void deleteAccount() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DELETE,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(EditProfileActivity.this, "Account deleted successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class); //เดี๋ยวค่อยแก้เป็นหน้า Login
-                        startActivity(intent);
-                        finish();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(EditProfileActivity.this, "Failed to delete account", Toast.LENGTH_LONG).show();
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("id", "1"); // ใส่ ID ของผู้ใช้
-                return params;
-            }
-        };
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Toast.makeText(EditProfileActivity.this, R.string.delete_account_success, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(EditProfileActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
+//                    finish();
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(EditProfileActivity.this, R.string.delete_account_Failed, Toast.LENGTH_LONG).show();
+                }
+            }) {
+        @Override
+        protected Map<String, String> getParams() {
+            Map<String, String> params = new HashMap<>();
+            params.put("apiKey", sharedPreferences.getString("apiKey",""));
+            return params;
+        }
+    };
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
+
     }
 
-    // ฟังก์ชันสำหรับการออกจากระบบ (Logout)
-    private void handleLogout() {
-        // ตัวอย่างการแสดง Toast แจ้งเตือนเมื่อกด Logout
-        Toast.makeText(EditProfileActivity.this, "Logging out...", Toast.LENGTH_SHORT).show();
-
-        // ในกรณีนี้สามารถลบข้อมูลการล็อกอิน (เช่น SharedPreferences) และทำการเปลี่ยนหน้า
-        // ตัวอย่างการย้ายไปหน้าหลักหรือหน้า Login
-        Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class); //เดี๋ยวค่อยเปลี่ยนเป็นหน้า Login
-        startActivity(intent);
-        finish();
+    private void confirmDeleteAccount() {
+        new AlertDialog.Builder(EditProfileActivity.this)
+            .setTitle(R.string.confirm_delete2)
+            .setMessage(R.string.msg_delete2)
+            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    deleteAccount();
+                }
+            })
+            .setNegativeButton(R.string.no, null)
+            .show();
     }
 
     private void openGallery() {
-        // เรียกใช้ Intent:
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         activityResultLauncher.launch(intent);
@@ -320,8 +336,8 @@ public class EditProfileActivity extends AppCompatActivity {
                         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
                         profileImageView.setImageBitmap(bitmap);
                     } catch (IOException e) {
+                        Toast.makeText(this, R.string.error_image, Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
-                        Toast.makeText(this, "Error loading image", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -329,7 +345,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private String encodeImageToBase64(Bitmap bitmap) {
         if (bitmap == null) {
-            Toast.makeText(getApplicationContext(), "Select the image first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.select_image, Toast.LENGTH_SHORT).show();
             return null;
         }
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
