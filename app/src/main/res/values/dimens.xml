@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btn_edit">300dp</dimen>
+    <dimen name="cvv">150dp</dimen>
+    <dimen name="btn_save">130dp</dimen>
+    <dimen name="size_profile">200dp</dimen>
+</resources>

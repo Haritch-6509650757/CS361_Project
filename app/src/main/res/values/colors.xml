@@ -2,6 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="dark_bule">#1F143D</color>
+    <color name="dark_purple">#34284A</color>
+    <color name="orange">#FB8926</color>
+    <color name="red">#FF0000</color>
     <color name="purplebtn">#34284A</color>
     <color name="orangeborder">#FFA500</color>
     <color name="orangetext">#FB8926</color>

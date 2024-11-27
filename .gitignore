@@ -21,3 +21,5 @@ docker_sql/db_data/ibtmp1
 docker_sql/db_data/mysql.sock
 docker_sql/db_data/binlog.*
 docker_sql/db_data/ib_buffer_pool
+
+docker_sql/db_data/

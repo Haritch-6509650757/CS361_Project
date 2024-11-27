@@ -44,6 +44,14 @@ public class MockHomeCustomerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final TextView gotoprofile = findViewById(R.id.gotoprofile);
+        gotoprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MockHomeCustomerActivity.this, ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
