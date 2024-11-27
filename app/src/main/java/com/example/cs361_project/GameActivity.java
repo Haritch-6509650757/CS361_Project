@@ -1,5 +1,6 @@
 package com.example.cs361_project;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -98,7 +99,8 @@ public class GameActivity extends AppCompatActivity {
         MERCHANT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filterGamesByCategory("MERCHANT");
+                Intent intent = new Intent(GameActivity.this, MerchantActivity.class);
+                startActivity(intent);
             }
         });
 
