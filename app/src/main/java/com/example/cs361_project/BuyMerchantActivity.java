@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BuyMerchantActivity extends AppCompatActivity {
@@ -53,7 +54,14 @@ public class BuyMerchantActivity extends AppCompatActivity {
 
         name.setText(Mitem);
         title.setText(Mitem);
-        price.setText(String.format("$%.2f", Mprice));
+
+        String currentLanguage = Locale.getDefault().getLanguage();
+        if(currentLanguage.equals("th")){
+            price.setText(String.format("฿%.2f", Mprice * 34.53));
+        }else{
+            price.setText(String.format("$%.2f", Mprice));
+        }
+
         amount.setText("In stock: " + Mamount);
 
         Glide.with(this)

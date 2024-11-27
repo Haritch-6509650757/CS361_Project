@@ -16,6 +16,7 @@ import com.google.android.material.button.MaterialButton;
 //import java.util.Base64;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Locale;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder> {
     private List<Game> games; // รายการเกม
@@ -61,7 +62,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameViewHolder
 
         // กำหนดข้อมูล views ที่จะแสดงผล
         holder.gamename.setText(game.getPname());
-        holder.gameprice.setText(String.format("$%.2f", price));
+
+        String currentLanguage = Locale.getDefault().getLanguage();
+        if(currentLanguage.equals("th")){
+            holder.gameprice.setText(String.format("฿%.2f", price * 34.53));
+        }else{
+            holder.gameprice.setText(String.format("$%.2f", price));
+        }
+        //holder.gameprice.setText(String.format("$%.2f", price));
         holder.gameamount.setText("Instock: " + amount);
 
         holder.gamecover.setImageBitmap(game.getPimage());

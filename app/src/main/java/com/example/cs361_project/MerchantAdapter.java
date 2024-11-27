@@ -23,6 +23,7 @@ import org.w3c.dom.Text;
 //import java.util.Base64;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Locale;
 
 public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.MerchantViewHolder> {
     private List<Merchant> merchant; // รายการเกม
@@ -68,7 +69,14 @@ public class MerchantAdapter extends RecyclerView.Adapter<MerchantAdapter.Mercha
 
         // กำหนดข้อมูล views ที่จะแสดงผล
         holder.Mitem.setText(merchant1.getMitem());
-        holder.Mprice.setText(String.format("$%.2f", price));
+
+        String currentLanguage = Locale.getDefault().getLanguage();
+        if(currentLanguage.equals("th")){
+            holder.Mprice.setText(String.format("฿%.2f", price * 34.53));
+        }else{
+            holder.Mprice.setText(String.format("$%.2f", price));
+        }
+
         holder.Mamount.setText("Instock: " + amount);
 
         String cover = "http://" + Api.IPV4 + ":8080/api/" + merchant1.getMimage();

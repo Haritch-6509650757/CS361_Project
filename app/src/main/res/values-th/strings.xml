@@ -3,9 +3,15 @@
     <string name="app_name">cs361_project</string>
     <string name="currency">฿THB</string>
     <string name="language">ไทย</string>
+    <string name="nintendo">นินเทนโด้</string>
     <string name="merchant">พ่อค้า</string>
     <string name="noti_merchant_exit">ต้องการออกจากหน้านี้ใช้หรือไม่</string>
     <string name="noti_merchant_exit_page">ยืนยันการออก</string>
     <string name="noti_merchant_ok">ยืนยัน</string>
     <string name="noti_merchant_close">ปิด</string>
+    <string name="pc">คอมพิวเตอร์</string>
+    <string name="psn">เพลย์สเตชั่น</string>
+    <string name="xbox">เอกซ์บอกซ์</string>
+    <string name="buy_success">ซื้อสำเร็จ</string>
+    <string name="buy_error">เกิดข้อผิดพลาด</string>
 </resources>

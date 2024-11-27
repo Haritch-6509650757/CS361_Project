@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BuyProductActivity extends AppCompatActivity {
@@ -56,7 +57,14 @@ public class BuyProductActivity extends AppCompatActivity {
 
         name.setText(Pname);
         title.setText(Pname);
-        price.setText(String.format("$%.2f", Pprice));
+
+        String currentLanguage = Locale.getDefault().getLanguage();
+        if(currentLanguage.equals("th")){
+            price.setText(String.format("฿%.2f", Pprice * 34.53));
+        }else{
+            price.setText(String.format("$%.2f", Pprice));
+        }
+
         amount.setText("In stock: " + Pamount);
 
         ImageView gamecover = findViewById(R.id.cover_buy);
