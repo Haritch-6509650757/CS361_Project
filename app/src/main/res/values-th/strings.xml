@@ -51,4 +51,26 @@
     <string name="delete">ลบ</string>
     <string name="text_delete">เขียน ลบ เพื่อยืนยัน</string>
     <string name="upload_image">อัปโหลดรูป</string>
+
+    <string name="confirm_delete1">กรุณาพิมพ์ "DELETE" เพื่อยืนยัน</string>
+    <string name="confirm">ยืนยันกลับ</string>
+    <string name="sure">คุณแน่ใจหรือไม่ว่าต้องการกลับไปที่หน้าโปรไฟล์?</string>
+    <string name="yes">ใช่</string>
+    <string name="no">ไม่</string>
+    <string name="confirm_cancel">ยืนยันการยกเลิก</string>
+    <string name="file_all_fields">กรุณากรอกข้อมูลให้ครบทุกช่อง</string>
+    <string name="file_visa">กรุณากรอกตัวเลขทั้ง 10 ตัวในวีซ่าของคุณ</string>
+    <string name="file_cvv">กรุณากรอกตัวเลขทั้ง 3 ตัวใน CVV ของคุณ</string>
+    <string name="success">สำเร็จ</string>
+    <string name="profile_success">อัปเดตโปรไฟล์สำเร็จแล้ว</string>
+    <string name="error_response">เกิดข้อผิดพลาดในการแยกวิเคราะห์คำตอบ</string>
+    <string name="profile_failed">ไม่สามารถอัปเดตโปรไฟล์ได้</string>
+    <string name="delete_account_success">ลบบัญชีเรียบร้อยแล้ว</string>
+    <string name="delete_account_Failed">ไม่สามารถลบบัญชีได้</string>
+    <string name="confirm_delete2">ยืนยันการลบ</string>
+    <string name="msg_delete2">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีนี้ การดำเนินการนี้ไม่สามารถยกเลิกได้</string>
+    <string name="error_image">เกิดข้อผิดพลาดในการโหลดรูปภาพ</string>
+    <string name="select_image">เลือกรูปภาพก่อน</string>
+    <string name="invalid_email">รูปแบบอีเมลไม่ถูกต้อง</string>
+    <string name="invalid_phone_format">หมายเลขโทรศัพท์ต้องเป็น 10 หลัก</string>
 </resources>
