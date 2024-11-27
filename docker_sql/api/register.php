@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $result = array( "status" => "error", "id"=> "error", "message" => "Username already exists");
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (username, password, job, apiKey) VALUES ('$username', '$hashed_password', '$job', '')";
+        $sql = "INSERT INTO users (username, password, job, apiKey, visa, cvv, profile_image) VALUES ('$username', '$hashed_password', '$job', '', '', '', '')";
 
         if (mysqli_query($conn, $sql)) {
             $last_id = mysqli_insert_id($conn);

@@ -3,6 +3,7 @@ package com.example.cs361_project;
 import static com.example.cs361_project.Api.URL_PROFILE;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -28,11 +30,15 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,57 +49,55 @@ public class ProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
-        // เข้าถึง TextView ที่แสดงข้อมูล
-        TextView textViewUserId = findViewById(R.id.id_user);
-        TextView textViewUsername = findViewById(R.id.username_user);
 
-        // สร้าง RequestQueue
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        // สร้าง StringRequest สำหรับดึงข้อมูล
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_PROFILE,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_PROFILE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            // แปลง response (String) เป็น JSONObject
-                            JSONObject jsonResponse = new JSONObject(response);
+                            ImageView profileImageView = findViewById(R.id.profile_image);
+                            TextView textViewUserId = findViewById(R.id.id_user);
+                            TextView textViewUsername = findViewById(R.id.username_user);
 
-                            // ดึงข้อมูล JSON Array ที่ชื่อ "data"
-                            JSONArray users = jsonResponse.getJSONArray("data");
+                            JSONObject c = new JSONObject(response);
+                            String status = c.getString("status");
+                            String message = c.getString("message");
+                            String id = c.getString("id");
+                            String username = c.getString("username");
+                            String profile_image = c.getString("profile_image");
 
-                            // พิมพ์จำนวนผู้ใช้ (length) ลงใน Logcat
-//                            Log.d("MainActivity", "Number of users: " + users.length());
 
-                            // ถ้าข้อมูลมีอยู่ใน array
-                            if (users.length() > 0) {
-                                // ดึงข้อมูลผู้ใช้แรกใน array
-                                JSONObject user = users.getJSONObject(0);
-                                String userId = user.getString("id");
-                                String username = user.getString("username");
+                            String pic_profile = "http://" + Api.IPV4 + ":8080/api/images/" + profile_image;
 
-                                // ตั้งค่าข้อความใน TextView
-                                textViewUserId.setText("ID : " + userId);
-                                textViewUsername.setText("Username : " + username);
+                            if(status.equals("success")){
+                                textViewUserId.setText(id);
+                                textViewUsername.setText(username);
+                                Glide.with(ProfileActivity.this).load(pic_profile).into(profileImageView);
+
+                            } else {
+                                Log.e("err", message);
                             }
-                        } catch (Exception e) {
-                            textViewUserId.setText("Error parsing data");
-                            textViewUsername.setText("Error parsing data");
-                            Log.e("MainActivity", "Error parsing JSON", e);
+                        } catch (JSONException e) {
+                            throw new RuntimeException(e);
                         }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        textViewUserId.setText("Failed to load data");
-                        textViewUsername.setText("Failed to load data");
-                        Log.e("MainActivity", "Volley Error", error);
-                    }
-                });
-
-        // เพิ่ม StringRequest ลงใน Queue
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            protected Map<String, String> getParams(){
+                Map<String, String> paramV = new HashMap<>();
+                paramV.put("apiKey", sharedPreferences.getString("apiKey",""));
+                return paramV;
+            }
+        };
         queue.add(stringRequest);
 
         Button editProfileButton = findViewById(R.id.button_edit_profile);
@@ -107,7 +111,22 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        //ImageView profileImageView = findViewById(R.id.profile_image);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
 
         // รับชื่อรูปภาพจาก Intent
         //String imageName = getIntent().getStringExtra("profile_image_name");

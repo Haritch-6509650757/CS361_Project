@@ -1,18 +1,15 @@
 <?php
     include 'connection.php';
-
-
-
-    if (!empty($_POST['username']) && !empty($_POST['visa']) && !empty($_POST['cvv']) && !empty($_POST['profile_image']) && !empty($_POST['id'])) {
+    if (!empty($_POST['username']) && !empty($_POST['visa']) && !empty($_POST['cvv']) && !empty($_POST['profile_image']) && !empty($_POST['apiKey'])) {
         $username = $_POST['username'];
         $visa = $_POST['visa'];
         $cvv = $_POST['cvv'];
         $profile_image = $_POST['profile_image'];
-        $id = $_POST['id']; // ใช้ ID ในการอัปเดต record
+        $apiKey = $_POST['apiKey'];
 
         // แปลง Base64 เป็นไฟล์ภาพ
         $imageName = uniqid() . '.jpg'; // ตั้งชื่อไฟล์
-        $imagePath = 'uploads/' . $imageName;
+        $imagePath = 'images/' . $imageName;
 
         if (!file_exists('uploads')) {
             mkdir('uploads', 0777, true);
@@ -22,11 +19,11 @@
         file_put_contents($imagePath, $decodedImage);
 
         // SQL Query
-        $sql = "UPDATE users SET username=?, visa=?, cvv=?, profile_image=? WHERE id=?";
+        $sql = "UPDATE users SET username=?, visa=?, cvv=?, profile_image=? WHERE apiKey=?";
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
-            $stmt->bind_param('ssssi', $username, $visa, $cvv, $imageName, $id);
+            $stmt->bind_param('sssss', $username, $visa, $cvv, $imageName, $apiKey);
 
             if ($stmt->execute()) {
                 echo json_encode(['success' => true, 'message' => 'Profile updated successfully', 'image_name' => $imageName]);

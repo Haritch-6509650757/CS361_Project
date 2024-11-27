@@ -1,16 +1,17 @@
 <?php
     include 'connection.php';
-    $query = "SELECT id, username FROM users";
-    $result = $conn->query($query);
 
-    if ($result->num_rows > 0) {
-        $users = [];
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
-        }
-        echo json_encode(["success" => true, "data" => $users]);
-    } else {
-        echo json_encode(["success" => false, "message" => "No users found"]);
+    if(!empty($_POST['apiKey'])){
+        $apiKey = $_POST['apiKey'];
     }
-    $conn->close();
+    if($conn){
+        $sql = "SELECT * FROM users WHERE apiKey = '$apiKey'"; 
+        $res = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($res);
+        $result = array("status" => "success", "message" => "query success", "id" => $row["id"], "username" => $row["username"], "profile_image" => $row["profile_image"]);
+    } else {
+        $result = array("status" => "failed", "message" => "lost connect to sql");
+    }
+    echo json_encode($result);
+    mysqli_close($conn);
 ?>

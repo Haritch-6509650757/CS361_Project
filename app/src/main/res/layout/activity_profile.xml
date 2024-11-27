@@ -28,8 +28,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:focusable="true"
-                app:srcCompat="@drawable/arrow_left"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/arrow_back" />
         </LinearLayout>
 
         <TextView

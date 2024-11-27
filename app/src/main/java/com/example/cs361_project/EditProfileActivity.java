@@ -6,6 +6,7 @@ import static com.example.cs361_project.Api.URL_EDIT_PROFILE;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,6 +43,8 @@ import java.util.Map;
 
 
 public class EditProfileActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
+
 
     private static final int PICK_IMAGE_REQUEST = 1;  // Code for opening gallery
     private ImageView profileImageView;
@@ -52,6 +55,8 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
 
         final Button buttonSave = findViewById(R.id.button_save);
         buttonSave.setOnClickListener(new View.OnClickListener() {
@@ -156,10 +161,6 @@ public class EditProfileActivity extends AppCompatActivity {
         String visa = editVisaCard.getText().toString();
         String cvv = editCvv.getText().toString();
 
-//        Log.d("EditProfile", "Username: " + username);
-//        Log.d("EditProfile", "Visa: " + visa);
-//        Log.d("EditProfile", "CVV: " + cvv);
-
         if (username.isEmpty() || visa.isEmpty() || cvv.isEmpty()) {
             Toast.makeText(EditProfileActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
@@ -219,7 +220,7 @@ public class EditProfileActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("id", "1"); // ระบุ ID ผู้ใช้
+                params.put("apiKey", sharedPreferences.getString("apiKey",""));
                 params.put("username", username); // ชื่อผู้ใช้
                 params.put("visa", visa); // หมายเลข Visa
                 params.put("cvv", cvv); // CVV
