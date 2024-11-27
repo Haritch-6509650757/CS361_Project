@@ -4,4 +4,5 @@
     <dimen name="cvv">150dp</dimen>
     <dimen name="btn_save">130dp</dimen>
     <dimen name="size_profile">200dp</dimen>
+    <dimen name="grid_spacing">8dp</dimen>
 </resources>

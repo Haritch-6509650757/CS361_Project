@@ -12,5 +12,8 @@ public class Api {
     public static final String URL_LOGOUT = "http://" + IPV4 + ":8080/api/logout.php";
     public static final String URL_ADDITEM = "http://" + IPV4 + ":8080/api/additem.php";
     public static final String URL_READITEM = "http://" + IPV4 + ":8080/api/readitem.php";
-    /*	http://localhost:8080/api/images/24-11-2024-1732473400-48102.jpg*/
+    public static final String URL_GET_PRODUCTS = "http://" + IPV4 + ":8080/api/getproducts.php";
+    public static final String URL_GET_MERCHANT = "http://" + IPV4 + ":8080/api/getmerchant.php";
+    public static final String URL_BUYITEMS = "http://" + IPV4 + ":8080/api/buyitems.php";
+    public static final String URL_BUYMERCHANT = "http://" + IPV4 + ":8080/api/buymerchant.php";
 }

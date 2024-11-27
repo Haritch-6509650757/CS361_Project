@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> feature_home_pages
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -67,7 +71,21 @@
             android:name=".ShowItemActivity"
             android:configChanges="locale|fontScale"
             android:exported="true"/>
+            
+        <activity
+            android:name=".MerchantActivity"
+            android:exported="true">
+        </activity>
 
+        <activity
+            android:name=".BuyProductActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".BuyMerchantActivity"
+            android:exported="true">
+        </activity>
 
     </application>
 
