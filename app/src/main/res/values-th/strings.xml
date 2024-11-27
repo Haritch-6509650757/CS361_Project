@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">cs361_project</string>
-    <string name="username">บัญชีผู้ใช้</string>
+    <string name="id_user">"ไอดีผู้ใช้ : "</string>
+    <string name="username">"บัญชีผู้ใช้ : "</string>
+    <string name="username1">บัญชีผู้ใช้</string>
     <string name="password">รหัสผ่าน</string>
     <string name="repassword">ยืนยันรหัสผ่าน</string>
     <string name="customer">ลูกค้า</string>
@@ -39,4 +41,13 @@
     <string name="noti_title_logout">คุณต้องการออกจากระบบหรือไม่</string>
     <string name="profile">โปรไฟล์</string>
     <string name="logout">ออกจากระบบ</string>
+    <string name="edit_profile">แก้ไขโปรไฟล์</string>
+    <string name="name">"ชื่อ : "</string>
+    <string name="visa_card">"บัตรวีซ่า : "</string>
+    <string name="cvv">CVV</string>
+    <string name="save">บันทึก</string>
+    <string name="cancle">ยกเลิก</string>
+    <string name="delete">ลบ</string>
+    <string name="text_delete">เขียน ลบ เพื่อยืนยัน</string>
+    <string name="upload_image">อัปโหลดรูป</string>
 </resources>

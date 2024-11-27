@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">cs361_project</string>
-<<<<<<< HEAD
     <string name="profile">Profile</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="id_user">ID : </string>
@@ -13,9 +12,8 @@
     <string name="delete">Delete</string>
     <string name="text_delete">to confirm this text DELETE</string>
     <string name="upload_image">Upload image</string>
-=======
     
-    <string name="username">Username</string>
+    <string name="username1">Username</string>
     <string name="password">Password</string>
     <string name="repassword">Re-password</string>
     <string name="customer">Customer</string>
@@ -58,7 +56,5 @@
     <string name="noti_title_logout">Do you want to logout</string>
 
 
-    <string name="profile">Profile</string>
     <string name="logout">Logout</string>
->>>>>>> origin/develop
 </resources>

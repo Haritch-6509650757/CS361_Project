@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_orange_border"
             android:ems="10"
-            android:hint="@string/username"
+            android:hint="@string/username1"
             android:inputType="text"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 

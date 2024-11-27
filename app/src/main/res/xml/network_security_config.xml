@@ -3,8 +3,5 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">10.0.2.2</domain>
     </domain-config>
-<<<<<<< HEAD
 </network-security-config>
-=======
-</network-security-config>
->>>>>>> origin/develop
+
