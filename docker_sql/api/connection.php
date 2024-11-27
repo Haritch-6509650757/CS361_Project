@@ -7,7 +7,6 @@ $dbname = 'cs361project';
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-//mysqli_connect($conn, 'utf8');
 // if ($conn) {
 //     echo "connected";
 // } else {

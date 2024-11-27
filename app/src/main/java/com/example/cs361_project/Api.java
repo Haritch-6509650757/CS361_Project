@@ -9,4 +9,8 @@ public class Api {
     public static final String URL_EDIT_PROFILE = "http://" + IPV4 + ":8080/api/editprofile.php";
     public static final String URL_DELETE = "http://" + IPV4 + ":8080/api/deleteaccount.php";
     public static final String URL_UPLOAD_IMAGE = "http://" + IPV4 + ":8080/api/uploadimage.php";
+    public static final String URL_LOGOUT = "http://" + IPV4 + ":8080/api/logout.php";
+    public static final String URL_ADDITEM = "http://" + IPV4 + ":8080/api/additem.php";
+    public static final String URL_READITEM = "http://" + IPV4 + ":8080/api/readitem.php";
+    /*	http://localhost:8080/api/images/24-11-2024-1732473400-48102.jpg*/
 }
