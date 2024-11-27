@@ -61,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                 login();
             }
         });
-
     } //end OnCreate
 
     public void login(){
@@ -99,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                             String message = c.getString("message");
                             Log.i("CheckerrJson", c.toString());
                             if(status.equals("success")){
+                                Log.e("whathappenedtome", c.toString());
                                 username = c.getString("username");
                                 apiKey = c.getString("apiKey");
                                 job = c.getString("job");

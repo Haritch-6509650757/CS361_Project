@@ -9,6 +9,8 @@
     <string name="register">สมัครบัญชี</string>
     <string name="retryconrectuserpass">ลองใหม่อีกครั้งด้วยชื่อผู้ใช้และรหัสผ่านที่ถูกต้อง</string>
     <string name="donthaveaccount">ไม่มีบัญชี</string>
+    <string name="amount">"จำนวน : "</string>
+    <string name="submit">ยืนยัน</string>
     <string name="err_title">เกิดข้อผิดพลาดขึ้น</string>
     <string name="noti_input_username">โปรดกรอกบัญชีผู้ใช้</string>
     <string name="noti_input_password">โปรดกรอกรหัสผ่าน</string>
@@ -24,4 +26,17 @@
     <string name="signin">เข้าสู่ระบบ</string>
     <string name="greatdeal">เพื่อที่จะได้รับข้อเสนอที่ดี</string>
     <string name="login">ล็อกอิน</string>
+    <string name="additem">เพิ่มสินค้า</string>
+    <string name="item">"สินค้า : "</string>
+    <string name="price">ราคา :</string>
+    <string name="noti_input_item">โปรดกรอกสินค้า</string>
+    <string name="noti_input_price">โปรดกรอกราคาสินค้า</string>
+    <string name="noti_input_amount">โปรดกรอกจำนวนสินค้า</string>
+    <string name="noti_img_item">โปรดอัปโหลดรูปภาพสินค้า</string>
+    <string name="noti_additem_success">เพิ่มสินค้าเรียบร้อย</string>
+    <string name="noti_exit_page">คุณต้องการออกจากหน้านี้หรือไม่</string>
+    <string name="noti_title_exit">ยืนยันการออก</string>
+    <string name="noti_title_logout">คุณต้องการออกจากระบบหรือไม่</string>
+    <string name="profile">โปรไฟล์</string>
+    <string name="logout">ออกจากระบบ</string>
 </resources>
