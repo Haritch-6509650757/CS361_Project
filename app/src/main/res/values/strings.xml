@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">cs361_project</string>
+    <string name="currency">$USD</string>
+    <string name="language">ENG</string>
+    <string name="pc">PC</string>
+    <string name="psn">PSN</string>
+    <string name="xbox">XBOX</string>
+    <string name="nintendo">NINTENDO</string>
+    <string name="merchant">MERCHANT</string>
+    <string name="noti_merchant_exit">Do you want to exit this page.</string>
+    <string name="noti_merchant_exit_page">Confirm to exit.</string>
+    <string name="noti_merchant_ok">OK</string>
+    <string name="noti_merchant_close">CANCEL</string>
+    <string name="buy_success">Buy success</string>
+    <string name="buy_error">Error</string>
 </resources>

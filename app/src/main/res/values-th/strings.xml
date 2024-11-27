@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">cs361_project</string>
+    <string name="currency">฿THB</string>
+    <string name="language">ไทย</string>
+    <string name="merchant">พ่อค้า</string>
+    <string name="noti_merchant_exit">ต้องการออกจากหน้านี้ใช้หรือไม่</string>
+    <string name="noti_merchant_exit_page">ยืนยันการออก</string>
+    <string name="noti_merchant_ok">ยืนยัน</string>
+    <string name="noti_merchant_close">ปิด</string>
 </resources>
