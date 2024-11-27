@@ -1,4 +1,4 @@
-/*<?php
+<?php
 include 'connection.php';
 
 if ($conn) {
@@ -22,4 +22,4 @@ if ($conn) {
 } else {
     echo "Connection failed: " . mysqli_connect_error();
 }
-?>*/
+?>
