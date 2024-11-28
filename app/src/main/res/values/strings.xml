@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">cs361_project</string>
+    <string name="profile">Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="id_user">ID : </string>
+    <string name="username">Username : </string>
+    <string name="email">Email : </string>
+    <string name="phone">Phone : </string>
+    <string name="visa_card">Visa Card : </string>
+    <string name="cvv">CVV</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">DELETE</string>
+    <string name="text_delete">to confirm this text DELETE</string>
+    <string name="upload_image">Upload image</string>
+
+    <string name="confirm_delete1">Please type "DELETE" to confirm</string>
+    <string name="confirm">Confirm Back</string>
+    <string name="sure">Are you sure you want to go back to the home page?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirm_cancel">Confirm cancle</string>
+    <string name="file_all_fields">Please fill in all fields.</string>
+    <string name="file_visa">Please fill in all 10 numbers in your visa.</string>
+    <string name="file_cvv">Please fill in all 3 numbers in your cvv.</string>
+    <string name="success">Success</string>
+    <string name="profile_success">Profile updated successfully.</string>
+    <string name="error_response">Error parsing response</string>
+    <string name="profile_failed">Failed to update profile</string>
+    <string name="delete_account_success">Account deleted successfully</string>
+    <string name="delete_account_Failed">Failed to delete account</string>
+    <string name="confirm_delete2">Confirm Delete</string>
+    <string name="msg_delete2">Are you sure you want to delete this account? This action cannot be undone.</string>
+    <string name="error_image">Error loading image</string>
+    <string name="select_image">Select the image first</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="invalid_phone_format">Phone number must be 10 digits.</string>
+
+    <string name="username1">Username</string>
+    <string name="password">Password</string>
+    <string name="repassword">Re-password</string>
+    <string name="customer">Customer</string>
+    <string name="seller">Seller</string>
+    <string name="register">Register</string>
+    
+    <string name="retryconrectuserpass">Retry with correct username and password</string>
+
+    <string name="signin">Sign in</string>
+    <string name="greatdeal">to get a great deal!</string>
+    <string name="login">Login</string>
+    <string name="donthaveaccount">Dont have an account?</string>
+
+    <string name="additem">Add Item</string>
+    <string name="item">Item : </string>
+    <string name="price">Price : </string>
+    <string name="amount">Amount : </string>
+    <string name="submit">Submit</string>
+
+    <string name="err_title">An error has occurred.</string>
+    <string name="noti_input_username">Please enter your username.</string>
+    <string name="noti_input_password">Please enter your password.</string>
+    <string name="noti_input_password6">Password must be longer than 6 characters.</string>
+    <string name="noti_input_repassword">Please enter your re-password.</string>
+    <string name="noti_password_mismatch">Password and confirm password do not match.</string>
+    <string name="noti_select_role">No selection radio.</string>
+    <string name="noti_register_success">Registration completed.</string>
+    <string name="noti_register_save">The system has successfully saved the data.</string>
+    <string name="noti_username_exists">Username already exists.</string>
+    <string name="noti_close">CLOSE</string>
+    <string name="noti_ok">OK</string>
+    <string name="noti_input_item">Please enter your item.</string>
+    <string name="noti_input_price">Please enter your price.</string>
+    <string name="noti_input_amount">Please enter your amount.</string>
+    <string name="noti_img_item">Plase upload your picture item.</string>
+    <string name="noti_additem_success">Add item success.</string>
+    <string name="noti_exit_page">Do you want to exit this page.</string>
+    <string name="noti_title_exit">Confirm to exit.</string>
+    <string name="noti_title_logout">Do you want to logout</string>
+    <string name="noti_buy_product">Do you want to buy this.</string>
+    <string name="noti_title_but">Confirm to buy.</string>
+
+    <string name="logout">Logout</string>
+    <string name="currency">$USD</string>
+    <string name="language">ENG</string>
+    <string name="pc">PC</string>
+    <string name="psn">PSN</string>
+    <string name="xbox">XBOX</string>
+    <string name="nintendo">NINTENDO</string>
+    <string name="merchant">MERCHANT</string>
+    <string name="noti_merchant_exit">Do you want to exit this page.</string>
+    <string name="noti_merchant_exit_page">Confirm to exit.</string>
+    <string name="noti_merchant_ok">OK</string>
+    <string name="noti_merchant_close">CANCEL</string>
+    <string name="buy_success">Buy success</string>
+    <string name="buy_error">Error</string>
+    <string name="gmail">"Gmail : "</string>
+    <string name="buynow">Buy Now</string>
+    <string name="profilethis">Profile Selected</string>
+    <string name="yourcodegane">This is your key : </string>
+</resources>
