@@ -16,7 +16,7 @@
 - Android Studio
 ## ขั้นตอนการทดสอบแอปพลิเคชัน
 ### Clone git repository
-```bash git clone https://github.com/Haritch-6509650757/CS361_Project.git ```
+```git clone https://github.com/Haritch-6509650757/CS361_Project.git ```
 ### เริ่มต้นฐานข้อมูลจาก Docker
 ```bash 
 cd docker_sql/
