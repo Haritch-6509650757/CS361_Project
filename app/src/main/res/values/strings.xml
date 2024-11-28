@@ -16,7 +16,7 @@
 
     <string name="confirm_delete1">Please type "DELETE" to confirm</string>
     <string name="confirm">Confirm Back</string>
-    <string name="sure">Are you sure you want to go back to the profile page?</string>
+    <string name="sure">Are you sure you want to go back to the home page?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="confirm_cancel">Confirm cancle</string>

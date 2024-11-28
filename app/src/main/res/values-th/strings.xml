@@ -57,7 +57,7 @@
 
     <string name="confirm_delete1">กรุณาพิมพ์ "DELETE" เพื่อยืนยัน</string>
     <string name="confirm">ยืนยันกลับ</string>
-    <string name="sure">คุณแน่ใจหรือไม่ว่าต้องการกลับไปที่หน้าโปรไฟล์?</string>
+    <string name="sure">คุณแน่ใจหรือไม่ว่าต้องการกลับไปที่หน้าหลัก?</string>
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
     <string name="confirm_cancel">ยืนยันการยกเลิก</string>

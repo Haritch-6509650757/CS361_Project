@@ -73,22 +73,27 @@ public class ProfileActivity extends AppCompatActivity {
                             String status = c.getString("status");
                             String message = c.getString("message");
                             String id = c.getString("id");
-                            String username = c.getString("username");
+                            String username = c.getString( "username");
                             String profile_image = c.getString("profile_image");
                             String email = c.getString("email");
                             String phone = c.getString("phone");
+                            String pic_profile;
 
-                            String pic_profile = "http://" + Api.IPV4 + ":8080/api/images/" + profile_image;
+                            if(profile_image.isEmpty()){
+                                pic_profile = null;
+                            }else {
+                                pic_profile = "http://" + Api.IPV4 + ":8080/api/images/" + profile_image;
+                            }
 
                             if (status.equals("success")) {
-                                textViewUserId.setText(id);
-                                textViewUsername.setText(username);
-                                textViewEmail.setText(email);
-                                textViewPhone.setText(phone);
+                                textViewUserId.setText("ID: " + id);
+                                textViewUsername.setText("Username: " + username);
+                                textViewEmail.setText("Email: " + email);
+                                textViewPhone.setText("Phone: " + phone);
 
                                 Glide.with(ProfileActivity.this)
-                                        .load(pic_profile)
-                                        .placeholder(R.drawable.profile_image)
+                                        .load(pic_profile != null ? pic_profile : R.drawable.profile_image)
+                                        //.placeholder(R.drawable.profile_image)
                                         .into(profileImageView);
 
                             } else {
@@ -134,7 +139,8 @@ public class ProfileActivity extends AppCompatActivity {
                 builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        Intent intent = new Intent(ProfileActivity.this, GameActivity.class);
+                        startActivity(intent);
                     }
                 });
 

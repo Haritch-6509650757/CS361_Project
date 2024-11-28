@@ -283,29 +283,29 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void deleteAccount() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_DELETE,
-            new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    Toast.makeText(EditProfileActivity.this, R.string.delete_account_success, Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(EditProfileActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finishAffinity();
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(EditProfileActivity.this, R.string.delete_account_success, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(EditProfileActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finishAffinity();
 //                    finish();
-                }
-            },
-            new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(EditProfileActivity.this, R.string.delete_account_Failed, Toast.LENGTH_LONG).show();
-                }
-            }) {
-        @Override
-        protected Map<String, String> getParams() {
-            Map<String, String> params = new HashMap<>();
-            params.put("apiKey", sharedPreferences.getString("apiKey",""));
-            return params;
-        }
-    };
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(EditProfileActivity.this, R.string.delete_account_Failed, Toast.LENGTH_LONG).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("apiKey", sharedPreferences.getString("apiKey",""));
+                return params;
+            }
+        };
 
         RequestQueue queue = Volley.newRequestQueue(this);
         queue.add(stringRequest);
@@ -314,16 +314,16 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void confirmDeleteAccount() {
         new AlertDialog.Builder(EditProfileActivity.this)
-            .setTitle(R.string.confirm_delete2)
-            .setMessage(R.string.msg_delete2)
-            .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    deleteAccount();
-                }
-            })
-            .setNegativeButton(R.string.no, null)
-            .show();
+                .setTitle(R.string.confirm_delete2)
+                .setMessage(R.string.msg_delete2)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteAccount();
+                    }
+                })
+                .setNegativeButton(R.string.no, null)
+                .show();
     }
 
     private void openGallery() {
