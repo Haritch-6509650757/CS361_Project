@@ -5,7 +5,7 @@
 - MA04 : การกำหนด Event Listener ของ Andriod
 - MA05 : การอ้างอิงถึงทรัพยากรของ Andriod และการเก็บตัวแปรถาวร shared_prefs
 - MA06 : การอ้างอิงถึง Alternatice Resources(smallest width) และการเปลี่ยนภาษาของเครื่อง, 
-- MA07 การกำหนดการเปลี่ยนขนาดตัวอักษร และการกำหนด Application ให้ใช้ได้แค่แนวตั้ง
+- MA07 : การกำหนด Application ให้ใช้ได้แค่แนวตั้ง
 - MA08 : ใช้ Radio ในการเลือกแม่ค้า หรือ ลูกค้า และ กำหนด Input Controls ให้เข้ากับ Input ช่องนั้นๆ
 - MA09 : การเก็บ Internal Storage โดยใช้ SharedPreferences shared_pref
 - MA10 : การใช้ Toast ในการแจ้งเตือนต่างๆ, การใช้ Dialog ในการแจ้งเตือนต่างๆ, Runtime Layout ในการดึงข้อมูลจากฐานข้อมูลมาแสดงในหน้า Home, Recycler View และ Image Encoding
@@ -16,7 +16,9 @@
 - Android Studio
 ## ขั้นตอนการทดสอบแอปพลิเคชัน
 ### Clone git repository
-```git clone https://github.com/Haritch-6509650757/CS361_Project.git ```
+```bash 
+git clone https://github.com/Haritch-6509650757/CS361_Project.git
+```
 ### เริ่มต้นฐานข้อมูลจาก Docker
 ```bash 
 cd docker_sql/
