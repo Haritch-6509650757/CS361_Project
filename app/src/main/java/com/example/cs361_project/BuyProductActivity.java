@@ -30,6 +30,7 @@ import com.google.android.material.button.MaterialButton;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class BuyProductActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
@@ -46,6 +47,11 @@ public class BuyProductActivity extends AppCompatActivity {
             return insets;
         });
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(BuyProductActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         Pname = getIntent().getStringExtra("game_name");
         double Pprice = getIntent().getDoubleExtra("game_price", 0.0);
@@ -78,12 +84,38 @@ public class BuyProductActivity extends AppCompatActivity {
         gamecover.setImageBitmap(scaledBitmap);
 
         final MaterialButton BUY = findViewById(R.id.btnbuynow_buy);
+
         BUY.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(BuyProductActivity.this)
+                        .setTitle(R.string.noti_title_but)
+                        .setMessage(R.string.noti_buy_product)
+                        .setPositiveButton(R.string.noti_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                BuyProduct();
+                                showSuccessDialog();
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton(R.string.noti_close, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+
+        /*BUY.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 BuyProduct();
             }
-        });
+        });*/
 
 
         final ImageView BACKBTN = findViewById(R.id.back_btn_buy);
@@ -137,6 +169,7 @@ public class BuyProductActivity extends AppCompatActivity {
 
 
     }
+
     private void BuyProduct() {
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -159,5 +192,29 @@ public class BuyProductActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
+    }
+
+    private void showSuccessDialog() {
+        String randomHexCode = generateRandomHex(20);
+        new AlertDialog.Builder(BuyProductActivity.this)
+                .setTitle(R.string.success)
+                .setMessage(getString(R.string.yourcodegane) + randomHexCode)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+
+    private String generateRandomHex(int length) {
+        Random random = new Random();
+        StringBuilder hexString = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int hexValue = random.nextInt(16);
+            char hexChar = Integer.toHexString(hexValue).charAt(0);
+            if (random.nextBoolean()) {
+                hexChar = Character.toUpperCase(hexChar);
+            }
+            hexString.append(hexChar);
+        }
+        return hexString.toString();
     }
 }

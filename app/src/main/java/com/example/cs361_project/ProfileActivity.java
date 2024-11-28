@@ -50,6 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
             return insets;
         });
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(ProfileActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         RequestQueue queue = Volley.newRequestQueue(this);
 

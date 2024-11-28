@@ -50,6 +50,7 @@ public class MerchantSellerAdapter extends RecyclerView.Adapter<MerchantSellerAd
             Mprice = itemView.findViewById(R.id.Mprice);
             Mamount = itemView.findViewById(R.id.Mamount);
             Mbtnbuynow = itemView.findViewById(R.id.Mbtnbuynow);
+            Mbtnbuynow.setVisibility(View.GONE);
         }
     }
 

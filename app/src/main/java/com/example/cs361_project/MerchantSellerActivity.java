@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -58,6 +59,12 @@ public class MerchantSellerActivity extends AppCompatActivity {
             return insets;
         });
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(MerchantSellerActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         ImageView menu_btn = findViewById(R.id.menu_btn);
         menu_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +89,16 @@ public class MerchantSellerActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         });
+
+        final Button additem = findViewById(R.id.additemnow);
+        additem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MerchantSellerActivity.this, AddItemActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         try {
             initializeViews();

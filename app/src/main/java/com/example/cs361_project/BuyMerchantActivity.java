@@ -1,6 +1,8 @@
 package com.example.cs361_project;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -27,8 +29,10 @@ import com.google.android.material.button.MaterialButton;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class BuyMerchantActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
     String Mitem;
 
     @Override
@@ -41,6 +45,13 @@ public class BuyMerchantActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(BuyMerchantActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         Mitem = getIntent().getStringExtra("merchant_item");
         double Mprice = getIntent().getDoubleExtra("merchant_price", 0.0);
         int Mamount = getIntent().getIntExtra("merchant_amount", 0);
@@ -75,10 +86,36 @@ public class BuyMerchantActivity extends AppCompatActivity {
         final MaterialButton BUY = findViewById(R.id.btnbuynow_merchant);
         BUY.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(BuyMerchantActivity.this)
+                        .setTitle(R.string.noti_title_but)
+                        .setMessage(R.string.noti_buy_product)
+                        .setPositiveButton(R.string.noti_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                BuyProduct();
+                                showSuccessDialog();
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton(R.string.noti_close, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+
+
+        /*BUY.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View view) {
                 BuyProduct();
             }
-        });
+        });*/
 
         final ImageView BACKBTN = findViewById(R.id.back_btn_merchant);
         BACKBTN.setOnClickListener(new View.OnClickListener() {
@@ -126,5 +163,29 @@ public class BuyMerchantActivity extends AppCompatActivity {
             }
         };
         queue.add(stringRequest);
+    }
+
+    private void showSuccessDialog() {
+        String randomHexCode = generateRandomHex(20);
+        new AlertDialog.Builder(BuyMerchantActivity.this)
+                .setTitle(R.string.success)
+                .setMessage(getString(R.string.yourcodegane) + randomHexCode)
+                .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+
+    private String generateRandomHex(int length) {
+        Random random = new Random();
+        StringBuilder hexString = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            int hexValue = random.nextInt(16);
+            char hexChar = Integer.toHexString(hexValue).charAt(0);
+            if (random.nextBoolean()) {
+                hexChar = Character.toUpperCase(hexChar);
+            }
+            hexString.append(hexChar);
+        }
+        return hexString.toString();
     }
 }

@@ -76,6 +76,8 @@
     <string name="noti_exit_page">Do you want to exit this page.</string>
     <string name="noti_title_exit">Confirm to exit.</string>
     <string name="noti_title_logout">Do you want to logout</string>
+    <string name="noti_buy_product">Do you want to buy this.</string>
+    <string name="noti_title_but">Confirm to buy.</string>
 
     <string name="logout">Logout</string>
     <string name="currency">$USD</string>
@@ -94,4 +96,5 @@
     <string name="gmail">"Gmail : "</string>
     <string name="buynow">Buy Now</string>
     <string name="profilethis">Profile Selected</string>
+    <string name="yourcodegane">This is your key : </string>
 </resources>

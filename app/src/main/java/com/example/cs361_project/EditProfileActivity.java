@@ -56,6 +56,12 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_profile);
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        if(!sharedPreferences.getString("logged", "false").equals("true")){
+            Intent intent = new Intent(EditProfileActivity.this,LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         final Button buttonSave = findViewById(R.id.button_save);
         buttonSave.setOnClickListener(new View.OnClickListener() {

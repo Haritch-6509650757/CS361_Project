@@ -40,6 +40,8 @@
     <string name="noti_title_exit">ยืนยันการออก</string>
     <string name="noti_title_logout">คุณต้องการออกจากระบบหรือไม่</string>
     <string name="profile">โปรไฟล์</string>
+    <string name="noti_buy_product">คุณต้องการซื้อสินค้าชิ้นนี้ไหม</string>
+    <string name="noti_title_but">ยืนยันที่จะซื้อ</string>
     <string name="logout">ออกจากระบบ</string>
     <string name="edit_profile">แก้ไขโปรไฟล์</string>
     <string name="gmail">อีเมล : </string>
@@ -89,4 +91,5 @@
     <string name="buy_error">เกิดข้อผิดพลาด</string>
     <string name="buynow">ซื้อเลย</string>
     <string name="profilethis">อยู่หน้าโปรไฟล์แล้ว</string>
+    <string name="yourcodegane">"นี่คือคีย์เกมของคุณ : "</string>
 </resources>
