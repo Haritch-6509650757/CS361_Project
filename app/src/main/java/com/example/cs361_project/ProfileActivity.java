@@ -2,6 +2,7 @@ package com.example.cs361_project;
 
 import static com.example.cs361_project.Api.URL_PROFILE;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -60,12 +61,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_PROFILE,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         try {
                             ImageView profileImageView = findViewById(R.id.profile_image);
                             TextView textViewUserId = findViewById(R.id.id_user);
                             TextView textViewUsername = findViewById(R.id.username_user);
+                            TextView textViewJob = findViewById(R.id.job_user);
                             TextView textViewEmail = findViewById(R.id.email_user);
                             TextView textViewPhone = findViewById(R.id.phone_user);
 
@@ -74,6 +77,7 @@ public class ProfileActivity extends AppCompatActivity {
                             String message = c.getString("message");
                             String id = c.getString("id");
                             String username = c.getString( "username");
+                            String job = c.getString( "job");
                             String profile_image = c.getString("profile_image");
                             String email = c.getString("email");
                             String phone = c.getString("phone");
@@ -88,6 +92,7 @@ public class ProfileActivity extends AppCompatActivity {
                             if (status.equals("success")) {
                                 textViewUserId.setText("ID: " + id);
                                 textViewUsername.setText("Username: " + username);
+                                textViewJob.setText("Job: " + job);
                                 textViewEmail.setText("Email: " + email);
                                 textViewPhone.setText("Phone: " + phone);
 

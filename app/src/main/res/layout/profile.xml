@@ -90,6 +90,17 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
+                android:id="@+id/job_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textview_border"
+                android:padding="5dp"
+                android:text="@string/job"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
                 android:id="@+id/email_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

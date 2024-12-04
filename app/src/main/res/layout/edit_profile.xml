@@ -69,17 +69,6 @@
             android:background="@color/dark_purple">
 
             <EditText
-                android:id="@+id/edit_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/textview_border"
-                android:padding="5dp"
-                android:hint="@string/username"
-                android:inputType="textPersonName"
-                android:layout_marginBottom="5dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-            <EditText
                 android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
