@@ -44,6 +44,7 @@
     <string name="noti_title_but">ยืนยันที่จะซื้อ</string>
     <string name="logout">ออกจากระบบ</string>
     <string name="edit_profile">แก้ไขโปรไฟล์</string>
+    <string name="job">อาชีพ : </string>
     <string name="gmail">อีเมล : </string>
     <string name="email">"อีเมล : "</string>
     <string name="phone">โทรศัพท์ : </string>

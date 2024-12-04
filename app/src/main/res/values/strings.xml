@@ -4,6 +4,7 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="id_user">ID : </string>
     <string name="username">Username : </string>
+    <string name="job">Job : </string>
     <string name="email">Email : </string>
     <string name="phone">Phone : </string>
     <string name="visa_card">Visa Card : </string>

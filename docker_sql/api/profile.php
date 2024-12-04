@@ -12,6 +12,7 @@
             "apiKey" => $apiKey,
             "id" => $row["id"],
             "username" => $row["username"],
+            "job" => $row["job"],
             "profile_image" => $row["profile_image"],
             "email" => $row["email"],
             "phone" => $row["phone"]);

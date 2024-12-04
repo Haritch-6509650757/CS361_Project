@@ -156,7 +156,7 @@ public class EditProfileActivity extends AppCompatActivity {
                         int id = item.getItemId();
                         if (id == R.id.menu_profile){
                             Intent intent = new Intent(EditProfileActivity.this, ProfileActivity.class);
-                            Toast.makeText(EditProfileActivity.this, "Profile Selected", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(EditProfileActivity.this, R.string.profilethis, Toast.LENGTH_SHORT).show();
                             startActivity(intent);
                             finish();
                             return true;
@@ -174,27 +174,25 @@ public class EditProfileActivity extends AppCompatActivity {
     } //endOnCreate
 
     private void saveProfile() {
-        EditText editName = findViewById(R.id.edit_name);
         EditText editVisaCard = findViewById(R.id.edit_visa);
         EditText editCvv = findViewById(R.id.edit_cvv);
         EditText editEmail = findViewById(R.id.edit_email);
         EditText editPhone = findViewById(R.id.edit_phone);
 
-        String username = editName.getText().toString();
         String visa = editVisaCard.getText().toString();
         String cvv = editCvv.getText().toString();
         String email = editEmail.getText().toString();
         String phone = editPhone.getText().toString();
 
-        if (username.isEmpty() || visa.isEmpty() || cvv.isEmpty() || email.isEmpty() || phone.isEmpty()) {
+        if (visa.isEmpty() || cvv.isEmpty() || email.isEmpty() || phone.isEmpty()) {
             Toast.makeText(EditProfileActivity.this, R.string.file_all_fields, Toast.LENGTH_SHORT).show();
             return;
         }
-        if (visa.length() < 10 && visa.length() > 10) {
+        if (visa.length() < 10 || visa.length() > 10) {
             Toast.makeText(EditProfileActivity.this, R.string.file_visa, Toast.LENGTH_SHORT).show();
             return;
         }
-        if (cvv.length() < 3 && cvv.length() > 3) {
+        if (cvv.length() < 3 || cvv.length() > 3) {
             Toast.makeText(EditProfileActivity.this, R.string.file_cvv, Toast.LENGTH_SHORT).show();
             return;
         }
@@ -256,7 +254,6 @@ public class EditProfileActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put("apiKey", sharedPreferences.getString("apiKey",""));
-                params.put("username", username);
                 params.put("visa", visa);
                 params.put("cvv", cvv);
                 params.put("profile_image", encodedImage);
